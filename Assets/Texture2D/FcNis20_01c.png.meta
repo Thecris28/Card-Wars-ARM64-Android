@@ -1,0 +1,488 @@
+fileFormatVersion: 2
+guid: 85f20a9aa75430142ba59bff0610e28c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Gunter_intro_01
+  - first:
+      213: 21300002
+    second: Ice_King_intro_03
+  - first:
+      213: 21300004
+    second: giantgunter
+  - first:
+      213: 21300006
+    second: gunterback
+  - first:
+      213: 21300008
+    second: FionnaCakeReach
+  - first:
+      213: 21300010
+    second: Ice_Kingdom
+  - first:
+      213: 21300012
+    second: gunter2
+  - first:
+      213: 21300014
+    second: Ice_King_intro_02
+  - first:
+      213: 21300016
+    second: LSP2
+  - first:
+      213: 21300018
+    second: icekingangry
+  - first:
+      213: 21300020
+    second: dialog01b
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 13
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 4
+    mipBias: 0
+    wrapU: 1
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gunter_intro_01
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 432
+        width: 895
+        height: 382
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 447.5, y: -191}
+        - {x: -447.5, y: -191}
+        - {x: -447.5, y: 191}
+        - {x: 447.5, y: 191}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ice_King_intro_03
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1000
+        height: 431
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 500, y: -215.5}
+        - {x: -500, y: -215.5}
+        - {x: -500, y: 215.5}
+        - {x: 500, y: 215.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: giantgunter
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 889
+        width: 800
+        height: 450
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 400, y: -225}
+        - {x: -400, y: -225}
+        - {x: -400, y: 225}
+        - {x: 400, y: 225}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gunterback
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 815
+        width: 727
+        height: 288
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 363.5, y: -144}
+        - {x: -363.5, y: -144}
+        - {x: -363.5, y: 144}
+        - {x: 363.5, y: 144}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FionnaCakeReach
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 432
+        width: 313
+        height: 340
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135.5, y: 40}
+        - {x: -138.5, y: 43}
+        - {x: -138.5, y: 47}
+        - {x: -135.5, y: 51}
+        - {x: -137.5, y: 51}
+        - {x: -141.5, y: 52}
+        - {x: -143.5, y: 57}
+        - {x: -144.5, y: 71}
+        - {x: -101.5, y: 94}
+        - {x: 12.5, y: 170}
+        - {x: 97.5, y: 170}
+        - {x: 67.5, y: 65}
+        - {x: 119.5, y: 33}
+        - {x: 132.5, y: -21}
+        - {x: 120.5, y: -108}
+        - {x: 140.5, y: -111}
+        - {x: 156.5, y: -123}
+        - {x: 156.5, y: -136}
+        - {x: 115.5, y: -170}
+        - {x: -132.5, y: -170}
+        - {x: -137.5, y: -167}
+        - {x: -156.5, y: -126}
+        - {x: -156.5, y: -89}
+        - {x: -128.5, y: -19}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ice_Kingdom
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 800
+        height: 456
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 400, y: -228}
+        - {x: -400, y: -228}
+        - {x: -400, y: 228}
+        - {x: 400, y: 228}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gunter2
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 815
+        width: 254
+        height: 288
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -116, y: -65}
+        - {x: -127, y: -35}
+        - {x: -127, y: 24}
+        - {x: -123, y: 55}
+        - {x: -117, y: 76}
+        - {x: -112, y: 90}
+        - {x: -93, y: 120}
+        - {x: -46, y: 144}
+        - {x: 30, y: 144}
+        - {x: 39, y: 143}
+        - {x: 78, y: 130}
+        - {x: 115, y: 95}
+        - {x: 127, y: 65}
+        - {x: 127, y: -43}
+        - {x: 119, y: -73}
+        - {x: 108, y: -91}
+        - {x: 83, y: -108}
+        - {x: 42, y: -144}
+        - {x: 9, y: -144}
+        - {x: 2, y: -136}
+        - {x: -41, y: -138}
+        - {x: -55, y: -138}
+        - {x: -68, y: -130}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ice_King_intro_02
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 0
+        width: 898
+        height: 386
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 449, y: -193}
+        - {x: -449, y: -193}
+        - {x: -449, y: 193}
+        - {x: 449, y: 193}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LSP2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1340
+        width: 747
+        height: 420
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 373.5, y: -210}
+        - {x: -373.5, y: -210}
+        - {x: -373.5, y: 210}
+        - {x: 373.5, y: 210}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icekingangry
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 1104
+        width: 568
+        height: 320
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 284, y: -160}
+        - {x: -284, y: -160}
+        - {x: -284, y: 160}
+        - {x: 284, y: 160}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dialog01b
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 0
+        width: 141
+        height: 126
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 64, y: 61, z: 61, w: 61}
+      outline:
+      - - {x: -52.5, y: -63}
+        - {x: -70.5, y: -55}
+        - {x: -70.5, y: 63}
+        - {x: 64.5, y: 63}
+        - {x: 70.5, y: 44}
+        - {x: 70.5, y: -58}
+        - {x: 66.5, y: -63}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      FionnaCakeReach: 21300008
+      Gunter_intro_01: 21300000
+      Ice_King_intro_02: 21300014
+      Ice_King_intro_03: 21300002
+      Ice_Kingdom: 21300010
+      LSP2: 21300016
+      dialog01b: 21300020
+      giantgunter: 21300004
+      gunter2: 21300012
+      gunterback: 21300006
+      icekingangry: 21300018
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1997 @@
+fileFormatVersion: 2
+guid: adf4d8805a8dde949a4249cdf2bb7d16
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Portrait_TreasureCat_Frame
+  - first:
+      213: 21300002
+    second: Portrait_TreasureCat_Round
+  - first:
+      213: 21300004
+    second: Portrait_TreasureCat_Hero
+  - first:
+      213: 21300006
+    second: Portrait_BerryBones_Round
+  - first:
+      213: 21300008
+    second: Portrait_BerryBones_Frame
+  - first:
+      213: 21300010
+    second: Portrait_BoneNut_Frame
+  - first:
+      213: 21300012
+    second: Portrait_SnowJam_Hero
+  - first:
+      213: 21300014
+    second: Portrait_BoneChill_Hero
+  - first:
+      213: 21300016
+    second: Portrait_SnowBerry_Hero
+  - first:
+      213: 21300018
+    second: Portrait_BoneChill_Frame
+  - first:
+      213: 21300020
+    second: Portrait_BoneChill_Round
+  - first:
+      213: 21300022
+    second: Portrait_SkeleLumps_Round
+  - first:
+      213: 21300024
+    second: Portrait_SnowNut_Frame
+  - first:
+      213: 21300026
+    second: Portrait_SnowNut_Hero
+  - first:
+      213: 21300028
+    second: Portrait_BerryBones_Hero
+  - first:
+      213: 21300030
+    second: Portrait_BoneNut_Round
+  - first:
+      213: 21300032
+    second: Portrait_BoneNut_Hero
+  - first:
+      213: 21300034
+    second: Portrait_SnowSnow_Round
+  - first:
+      213: 21300036
+    second: Portrait_SnowBerry_Frame
+  - first:
+      213: 21300038
+    second: Portrait_SkeleLumps_Hero
+  - first:
+      213: 21300040
+    second: Portrait_SnowJam_Round
+  - first:
+      213: 21300042
+    second: Portrait_SnowSnow_Hero
+  - first:
+      213: 21300044
+    second: Portrait_SnowBerry_Round
+  - first:
+      213: 21300046
+    second: Portrait_SkeleLumps_Frame
+  - first:
+      213: 21300048
+    second: Portrait_SnowSnow_Frame
+  - first:
+      213: 21300050
+    second: Portrait_SnowNut_Round
+  - first:
+      213: 21300052
+    second: Portrait_SnowJam_Frame
+  - first:
+      213: 21300054
+    second: Portrait_Mimic_Frame
+  - first:
+      213: 21300056
+    second: Portrait_Mimic_Round
+  - first:
+      213: 21300058
+    second: Portrait_IceQueen_Hero
+  - first:
+      213: 21300060
+    second: Portrait_IceQueen_Frame
+  - first:
+      213: 21300062
+    second: Portrait_IceQueen_Round
+  - first:
+      213: 21300064
+    second: Portrait_Mimic_Hero
+  - first:
+      213: 21300066
+    second: Portrait_TreasureCat_RoundLocked
+  - first:
+      213: 21300068
+    second: QuestIcon_TCat
+  - first:
+      213: 21300070
+    second: QuestIcon_TCat_Unlocked
+  - first:
+      213: 21300072
+    second: Portrait_ElFistoB_Round
+  - first:
+      213: 21300074
+    second: Portrait_ElFistoA_Hero
+  - first:
+      213: 21300076
+    second: Portrait_ElFistoB_Hero
+  - first:
+      213: 21300078
+    second: Portrait_ElFistoA_Frame
+  - first:
+      213: 21300080
+    second: Portrait_ElFistoA_Round
+  - first:
+      213: 21300082
+    second: Portrait_ElFistoB_Frame
+  - first:
+      213: 21300084
+    second: Portrait_MarshallLee_Frame
+  - first:
+      213: 21300086
+    second: Portrait_MarshallLee_Round
+  - first:
+      213: 21300088
+    second: Portrait_MarshallLee_Hero
+  - first:
+      213: 21300090
+    second: QuestIcon_HeroBattle_Unlocked
+  - first:
+      213: 21300092
+    second: QuestIcon_HeroBattle
+  - first:
+      213: 21300094
+    second: Portrait_LordMonochromicorn_Frame
+  - first:
+      213: 21300096
+    second: Portrait_PrinceGumball_Round
+  - first:
+      213: 21300098
+    second: Portrait_PrinceGumball_Hero
+  - first:
+      213: 21300100
+    second: Portrait_LordMonochromicorn_Hero
+  - first:
+      213: 21300102
+    second: Portrait_LordMonochromicorn_Round
+  - first:
+      213: 21300104
+    second: Portrait_PrinceGumball_Frame
+  - first:
+      213: 21300106
+    second: Portrait_ValentineIceKing_Round
+  - first:
+      213: 21300108
+    second: Portrait_ValentineIceKing_Hero
+  - first:
+      213: 21300110
+    second: Portrait_ValentineIceKing_Frame
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 4
+    mipBias: 0
+    wrapU: 1
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Portrait_TreasureCat_Frame
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_TreasureCat_Round
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 56}
+        - {x: -39, y: 64}
+        - {x: 39, y: 64}
+        - {x: 64, y: 42}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_TreasureCat_Hero
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BerryBones_Round
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BerryBones_Frame
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneNut_Frame
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowJam_Hero
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneChill_Hero
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowBerry_Hero
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneChill_Frame
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 514
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneChill_Round
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1799
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63, y: -53}
+        - {x: -64, y: -52}
+        - {x: -64, y: 42}
+        - {x: -52, y: 64}
+        - {x: 42, y: 64}
+        - {x: 64, y: 49}
+        - {x: 64, y: -40}
+        - {x: 57, y: -64}
+        - {x: -31, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SkeleLumps_Round
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 771
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: -64}
+        - {x: -64, y: -46}
+        - {x: -64, y: 41}
+        - {x: -33, y: 64}
+        - {x: 60, y: 64}
+        - {x: 64, y: 51}
+        - {x: 64, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowNut_Frame
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowNut_Hero
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BerryBones_Hero
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneNut_Round
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_BoneNut_Hero
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowSnow_Round
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1542
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: -64}
+        - {x: -64, y: -46}
+        - {x: -64, y: 41}
+        - {x: -33, y: 64}
+        - {x: 60, y: 64}
+        - {x: 64, y: 51}
+        - {x: 64, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowBerry_Frame
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1671
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SkeleLumps_Hero
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowJam_Round
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63, y: -53}
+        - {x: -64, y: -52}
+        - {x: -64, y: 42}
+        - {x: -52, y: 64}
+        - {x: 42, y: 64}
+        - {x: 64, y: 49}
+        - {x: 64, y: -40}
+        - {x: 57, y: -64}
+        - {x: -31, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowSnow_Hero
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1285
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowBerry_Round
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1800
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -63, y: -53}
+        - {x: -64, y: -52}
+        - {x: -64, y: 42}
+        - {x: -52, y: 64}
+        - {x: 42, y: 64}
+        - {x: 64, y: 49}
+        - {x: 64, y: -40}
+        - {x: 57, y: -64}
+        - {x: -31, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SkeleLumps_Frame
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowSnow_Frame
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowNut_Round
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_SnowJam_Frame
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64, y: -64}
+        - {x: -64, y: -64}
+        - {x: -64, y: 64}
+        - {x: 64, y: 64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_Mimic_Frame
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1028
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_Mimic_Round
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_IceQueen_Hero
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1028
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_IceQueen_Frame
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1542
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_IceQueen_Round
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1285
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_Mimic_Hero
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1542
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_TreasureCat_RoundLocked
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 1028
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: -64}
+        - {x: -64, y: -46}
+        - {x: -64, y: 41}
+        - {x: -33, y: 64}
+        - {x: 60, y: 64}
+        - {x: 64, y: 51}
+        - {x: 64, y: -64}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuestIcon_TCat
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1799
+        width: 256
+        height: 196
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -119, y: -98}
+        - {x: -128, y: -94}
+        - {x: -128, y: -1}
+        - {x: -96, y: 98}
+        - {x: -33, y: 98}
+        - {x: -25, y: 97}
+        - {x: -11, y: 98}
+        - {x: 86, y: 98}
+        - {x: 95, y: 91}
+        - {x: 121, y: 12}
+        - {x: 128, y: 5}
+        - {x: 128, y: -69}
+        - {x: 121, y: -69}
+        - {x: 100, y: -63}
+        - {x: 100, y: -83}
+        - {x: 91, y: -98}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuestIcon_TCat_Unlocked
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1799
+        width: 256
+        height: 196
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -119, y: -98}
+        - {x: -128, y: -94}
+        - {x: -128, y: -1}
+        - {x: -96, y: 98}
+        - {x: -33, y: 98}
+        - {x: -25, y: 97}
+        - {x: -11, y: 98}
+        - {x: 86, y: 98}
+        - {x: 95, y: 91}
+        - {x: 121, y: 12}
+        - {x: 128, y: 5}
+        - {x: 128, y: -69}
+        - {x: 121, y: -69}
+        - {x: 100, y: -63}
+        - {x: 100, y: -83}
+        - {x: 91, y: -98}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoB_Round
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoA_Hero
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoB_Hero
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoA_Frame
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 771
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoA_Round
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1028
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ElFistoB_Frame
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 1285
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_MarshallLee_Frame
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1028
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_MarshallLee_Round
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1285
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -122, y: -48}
+        - {x: -128, y: -36}
+        - {x: -128, y: 45}
+        - {x: -112, y: 75}
+        - {x: -65, y: 119}
+        - {x: -40, y: 128}
+        - {x: 33, y: 128}
+        - {x: 49, y: 126}
+        - {x: 76, y: 108}
+        - {x: 107, y: 82}
+        - {x: 128, y: 40}
+        - {x: 128, y: -39}
+        - {x: 105, y: -85}
+        - {x: 74, y: -110}
+        - {x: 52, y: -122}
+        - {x: 31, y: -128}
+        - {x: -37, y: -128}
+        - {x: -70, y: -114}
+        - {x: -83, y: -103}
+        - {x: -113, y: -71}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_MarshallLee_Hero
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1542
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuestIcon_HeroBattle_Unlocked
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 0
+        width: 222
+        height: 210
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105, y: -58}
+        - {x: -111, y: -40}
+        - {x: -111, y: 31}
+        - {x: -86, y: 88}
+        - {x: -44, y: 105}
+        - {x: 31, y: 105}
+        - {x: 78, y: 85}
+        - {x: 111, y: 41}
+        - {x: 111, y: -33}
+        - {x: 108, y: -50}
+        - {x: 84, y: -87}
+        - {x: 55, y: -105}
+        - {x: -59, y: -105}
+        - {x: -86, y: -88}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuestIcon_HeroBattle
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 257
+        width: 222
+        height: 210
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -105, y: -58}
+        - {x: -111, y: -40}
+        - {x: -111, y: 31}
+        - {x: -86, y: 88}
+        - {x: -44, y: 105}
+        - {x: 31, y: 105}
+        - {x: 78, y: 85}
+        - {x: 111, y: 41}
+        - {x: 111, y: -33}
+        - {x: 108, y: -50}
+        - {x: 84, y: -87}
+        - {x: 55, y: -105}
+        - {x: -59, y: -105}
+        - {x: -86, y: -88}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_LordMonochromicorn_Frame
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_PrinceGumball_Round
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -124, y: -49}
+        - {x: -128, y: -31}
+        - {x: -128, y: 33}
+        - {x: -120, y: 61}
+        - {x: -103, y: 85}
+        - {x: -68, y: 115}
+        - {x: -56, y: 120}
+        - {x: -31, y: 128}
+        - {x: 37, y: 128}
+        - {x: 70, y: 118}
+        - {x: 116, y: 68}
+        - {x: 128, y: 41}
+        - {x: 128, y: -47}
+        - {x: 104, y: -86}
+        - {x: 57, y: -123}
+        - {x: 35, y: -128}
+        - {x: -35, y: -128}
+        - {x: -56, y: -121}
+        - {x: -84, y: -102}
+        - {x: -106, y: -79}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_PrinceGumball_Hero
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_LordMonochromicorn_Hero
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 257
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_LordMonochromicorn_Round
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -124, y: -46}
+        - {x: -128, y: -33}
+        - {x: -128, y: 38}
+        - {x: -115, y: 68}
+        - {x: -80, y: 107}
+        - {x: -49, y: 123}
+        - {x: -32, y: 128}
+        - {x: 34, y: 128}
+        - {x: 49, y: 123}
+        - {x: 85, y: 103}
+        - {x: 116, y: 68}
+        - {x: 128, y: 32}
+        - {x: 128, y: -37}
+        - {x: 126, y: -52}
+        - {x: 87, y: -105}
+        - {x: 49, y: -124}
+        - {x: 33, y: -128}
+        - {x: -38, y: -128}
+        - {x: -81, y: -108}
+        - {x: -106, y: -80}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_PrinceGumball_Frame
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 514
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ValentineIceKing_Round
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -124, y: -46}
+        - {x: -128, y: -33}
+        - {x: -128, y: 38}
+        - {x: -115, y: 68}
+        - {x: -87, y: 103}
+        - {x: -46, y: 125}
+        - {x: -31, y: 128}
+        - {x: 35, y: 128}
+        - {x: 43, y: 127}
+        - {x: 87, y: 102}
+        - {x: 108, y: 76}
+        - {x: 122, y: 51}
+        - {x: 128, y: 30}
+        - {x: 128, y: -40}
+        - {x: 106, y: -82}
+        - {x: 78, y: -110}
+        - {x: 38, y: -128}
+        - {x: -38, y: -128}
+        - {x: -81, y: -108}
+        - {x: -106, y: -80}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ValentineIceKing_Hero
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portrait_ValentineIceKing_Frame
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -128}
+        - {x: -128, y: -128}
+        - {x: -128, y: 128}
+        - {x: 128, y: 128}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Portrait_BerryBones_Frame: 21300008
+      Portrait_BerryBones_Hero: 21300028
+      Portrait_BerryBones_Round: 21300006
+      Portrait_BoneChill_Frame: 21300018
+      Portrait_BoneChill_Hero: 21300014
+      Portrait_BoneChill_Round: 21300020
+      Portrait_BoneNut_Frame: 21300010
+      Portrait_BoneNut_Hero: 21300032
+      Portrait_BoneNut_Round: 21300030
+      Portrait_ElFistoA_Frame: 21300078
+      Portrait_ElFistoA_Hero: 21300074
+      Portrait_ElFistoA_Round: 21300080
+      Portrait_ElFistoB_Frame: 21300082
+      Portrait_ElFistoB_Hero: 21300076
+      Portrait_ElFistoB_Round: 21300072
+      Portrait_IceQueen_Frame: 21300060
+      Portrait_IceQueen_Hero: 21300058
+      Portrait_IceQueen_Round: 21300062
+      Portrait_LordMonochromicorn_Frame: 21300094
+      Portrait_LordMonochromicorn_Hero: 21300100
+      Portrait_LordMonochromicorn_Round: 21300102
+      Portrait_MarshallLee_Frame: 21300084
+      Portrait_MarshallLee_Hero: 21300088
+      Portrait_MarshallLee_Round: 21300086
+      Portrait_Mimic_Frame: 21300054
+      Portrait_Mimic_Hero: 21300064
+      Portrait_Mimic_Round: 21300056
+      Portrait_PrinceGumball_Frame: 21300104
+      Portrait_PrinceGumball_Hero: 21300098
+      Portrait_PrinceGumball_Round: 21300096
+      Portrait_SkeleLumps_Frame: 21300046
+      Portrait_SkeleLumps_Hero: 21300038
+      Portrait_SkeleLumps_Round: 21300022
+      Portrait_SnowBerry_Frame: 21300036
+      Portrait_SnowBerry_Hero: 21300016
+      Portrait_SnowBerry_Round: 21300044
+      Portrait_SnowJam_Frame: 21300052
+      Portrait_SnowJam_Hero: 21300012
+      Portrait_SnowJam_Round: 21300040
+      Portrait_SnowNut_Frame: 21300024
+      Portrait_SnowNut_Hero: 21300026
+      Portrait_SnowNut_Round: 21300050
+      Portrait_SnowSnow_Frame: 21300048
+      Portrait_SnowSnow_Hero: 21300042
+      Portrait_SnowSnow_Round: 21300034
+      Portrait_TreasureCat_Frame: 21300000
+      Portrait_TreasureCat_Hero: 21300004
+      Portrait_TreasureCat_Round: 21300002
+      Portrait_TreasureCat_RoundLocked: 21300066
+      Portrait_ValentineIceKing_Frame: 21300110
+      Portrait_ValentineIceKing_Hero: 21300108
+      Portrait_ValentineIceKing_Round: 21300106
+      QuestIcon_HeroBattle: 21300092
+      QuestIcon_HeroBattle_Unlocked: 21300090
+      QuestIcon_TCat: 21300068
+      QuestIcon_TCat_Unlocked: 21300070
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
