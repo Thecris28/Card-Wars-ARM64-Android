@@ -351,7 +351,16 @@ public class SideQuestManager : ILoadable
 						flag2 = true;
 						break;
 					case SideQuestProgress.SideQuestState.Failed:
-						flag = false;
+						if (sideQuestData.IsTimeLimitedEvent && sideQuestData.IsEventStarted && !sideQuestData.IsEventEnded)
+						{
+							ResetSideQuest(sideQuestData);
+							instance.Save();
+							flag = true;
+						}
+						else
+						{
+							flag = false;
+						}
 						flag2 = false;
 						break;
 					}

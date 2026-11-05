@@ -4883,7 +4883,7 @@ MonoBehaviour:
     width: 1
     height: 1
   mShader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  mTexture: {fileID: 2800000, guid: 216f71cabc37f4a46817d9afcc40e576, type: 3}
+  mTexture: {fileID: 2800000, guid: 62571cd1145e4824082fa870c49cf857, type: 3}
   mMat: {fileID: 0}
 --- !u!114 &255
 MonoBehaviour:

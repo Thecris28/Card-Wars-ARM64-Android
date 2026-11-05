@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CodeRedemptionScript : MonoBehaviour
@@ -33,6 +35,8 @@ public class CodeRedemptionScript : MonoBehaviour
 
 	private const string MeMowCode = "ME-MOW";
 
+	private const string GhostNinjaCode = "GHOSTNINJA";
+
 	public UILabel Label;
 
 	public AudioClip fanfare;
@@ -53,95 +57,93 @@ public class CodeRedemptionScript : MonoBehaviour
 
 	public UILabel CreatureName;
 
+	private Dictionary<string, Func<bool>> redemptions;
+
+	private Dictionary<string, Func<bool>> Redemptions
+	{
+		get
+		{
+			if (redemptions == null)
+			{
+				redemptions = BuildRedemptions();
+			}
+			return redemptions;
+		}
+	}
+
+	private Dictionary<string, Func<bool>> BuildRedemptions()
+	{
+		Dictionary<string, Func<bool>> map = new Dictionary<string, Func<bool>>();
+
+		// cards (creatures / spells)
+		map.Add(PigCode, CardRedemption(PlayerInfoScript.Tag.GotCreaturePig, "Creature_Pig"));
+		map.Add(SnuggleTreeCode, CardRedemption(PlayerInfoScript.Tag.GotCreatureSnuggleTree, "Creature_SnuggleTree"));
+		map.Add(BardCode, CardRedemption(PlayerInfoScript.Tag.GotCreatureEmbarassingBard, "Creature_EmbarrassingBard"));
+		map.Add(CerebralCode, CardRedemption(PlayerInfoScript.Tag.GotSpellCerebral, "Spell_CerebralBloodstorm"));
+		map.Add(BriefPowerCode, CardRedemption(PlayerInfoScript.Tag.GotSpellBriefPower, "Spell_BriefPower"));
+		map.Add(MusicMallardCode, CardRedemption(PlayerInfoScript.Tag.GotCreatureMusicMallard, "Creature_MusicMallard"));
+		map.Add(SpikedMaceStumpCode, CardRedemption(PlayerInfoScript.Tag.GotSpikedMaceStump, "Creature_SpikedMaceStump"));
+		map.Add(FreezyJCode, CardRedemption(PlayerInfoScript.Tag.GotFreezyJ, "Creature_FreezyJ"));
+		// creatures that are already in the game, but have a code for a free copy
+		map.Add(AwesomatudeCode, CardRedemption(PlayerInfoScript.Tag.GotAwesomatude, "Creature_SpikedMaceStump"));
+		map.Add(MeMowCode, CardRedemption(PlayerInfoScript.Tag.GotMeMow, "Creature_FreezyJ"));
+		map.Add(GhostNinjaCode, CardRedemption(PlayerInfoScript.Tag.GotCreatureGhostNinja, "Creature_GL_GhostNinja"));
+
+		// Leaders
+		map.Add(XmasBmoCode, LeaderRedemption("Leader_BMOSweater"));
+		map.Add(JakeGhostCode, SeasonalLeaderRedemption("halloween", "Leader_JakeGhost"));
+		map.Add(LSPSweaterCode, SeasonalLeaderRedemption("christmas", "Leader_LumpySweater"));
+		//  Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null
+		map.Add(PajamaFinnCode, LeaderRedemption("Leader_FinnPajama"));
+		map.Add(DocFinnCode, LeaderRedemption("Leader_FinnDoctor"));
+
+		return map;
+	}
+
+	private Func<bool> CardRedemption(PlayerInfoScript.Tag tag, string cardName)
+	{
+		return delegate
+		{
+			DoCardRedeem(tag, cardName);
+			return true;
+		};
+	}
+
+	private Func<bool> LeaderRedemption(string leaderName)
+	{
+		return delegate
+		{
+			DoLeaderRedeem(leaderName);
+			return true;
+		};
+	}
+
+	private Func<bool> SeasonalLeaderRedemption(string season, string leaderName)
+	{
+		return delegate
+		{
+			if (!IsPremiumChestAvailable(season))
+			{
+				return false;
+			}
+			DoLeaderRedeem(leaderName);
+			return true;
+		};
+	}
+
+	private static bool IsPremiumChestAvailable(string season)
+	{
+		return ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", season, TFUtils.ServerTime.Ticks);
+	}
+
 	public void RedeemCode(string input)
 	{
-		if ("P1GGY1" == input.ToUpper())
+		Func<bool> redemption;
+		if (Redemptions.TryGetValue(input.ToUpper(), out redemption) && redemption())
 		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotCreaturePig, "Creature_Pig");
 			return;
 		}
-		if ("CUTIE PIE" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureSnuggleTree, "Creature_SnuggleTree");
-			return;
-		}
-		if ("MINSTR3L" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureEmbarassingBard, "Creature_EmbarrassingBard");
-			return;
-		}
-		if ("C3R3BL" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotSpellCerebral, "Spell_CerebralBloodstorm");
-			return;
-		}
-		if ("BRIEF" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotSpellBriefPower, "Spell_BriefPower");
-			return;
-		}
-		if ("123224" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureMusicMallard, "Creature_MusicMallard");
-			return;
-		}
-		if ("NICE ONE" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotSpikedMaceStump, "Creature_SpikedMaceStump");
-			return;
-		}
-		if ("COOLDUDE" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotFreezyJ, "Creature_FreezyJ");
-			return;
-		}
-		if ("AWESOMATUDE" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotAwesomatude, "Creature_SpikedMaceStump");
-			return;
-		}
-		if ("ME-MOW" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotMeMow, "Creature_FreezyJ");
-			return;
-		}
-		if ("WINTER BMO" == input.ToUpper())
-		{
-			DoLeaderRedeem("Leader_BMOSweater");
-			return;
-		}
-		if ("GHOST DOG" == input.ToUpper() && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "halloween", TFUtils.ServerTime.Ticks))
-		{
-			DoLeaderRedeem("Leader_JakeGhost");
-			return;
-		}
-		if ("LUMPS" == input.ToUpper() && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "christmas", TFUtils.ServerTime.Ticks))
-		// if ("LUMPS" == input.ToUpper())
-		{
-			DoLeaderRedeem("Leader_LumpySweater");
-			return;
-		}
-		// if ("UND3RPANT5" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
-		if ("UND3RPANT5" == input.ToUpper())
-		{
-			DoLeaderRedeem("Leader_FinnPajama");
-			return;
-		}
-		// if ("DRKUNGFU" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
-		if ("DRKUNGFU" == input.ToUpper())
-		{
-			DoLeaderRedeem("Leader_FinnDoctor");
-			return;
-		}
-		if ("GHOSTNINJA" == input.ToUpper())
-		{
-			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureGhostNinja, "Creature_GL_GhostNinja");
-			return;
-		}
-		if (Showfail != null)
-		{
-			Showfail.Play(true);
-		}
+		PlayTween(Showfail);
 		NGUITools.PlaySound(failure);
 	}
 
@@ -156,24 +158,13 @@ public class CodeRedemptionScript : MonoBehaviour
 			{
 				instance.DeckManager.AddCard(cardItem);
 				instance.SetTag(tag);
-				if (CreatureName != null)
-				{
-					CreatureName.text = cardItem.Form.Name;
-				}
-				if (ShowSuccess != null)
-				{
-					ShowSuccess.Play(true);
-				}
-				StartCoroutine(CardRewardSfxCoroutine(cerebral));
+				ShowRewardFeedback(cardItem.Form.Name);
 			}
 			instance.Save();
 		}
 		else
 		{
-			if (ShowDupe != null)
-			{
-				ShowDupe.Play(true);
-			}
+			PlayTween(ShowDupe);
 			NGUITools.PlaySound(success);
 		}
 	}
@@ -186,19 +177,30 @@ public class CodeRedemptionScript : MonoBehaviour
 		if (leaderItem != null)
 		{
 			instance.Save();
-			if (CreatureName != null)
-			{
-				CreatureName.text = leaderItem.Form.Name;
-			}
-			if (ShowSuccess != null)
-			{
-				ShowSuccess.Play(true);
-			}
-			StartCoroutine(CardRewardSfxCoroutine(cerebral));
+			ShowRewardFeedback(leaderItem.Form.Name);
 		}
-		else if (ShowDupe != null)
+		else
 		{
-			ShowDupe.Play(true);
+			PlayTween(ShowDupe);
+		}
+	}
+
+	// Feedback to the user about the reward they just got 
+	private void ShowRewardFeedback(string rewardName)
+	{
+		if (CreatureName != null)
+		{
+			CreatureName.text = rewardName;
+		}
+		PlayTween(ShowSuccess);
+		StartCoroutine(CardRewardSfxCoroutine(cerebral));
+	}
+
+	private static void PlayTween(UIButtonTween tween)
+	{
+		if (tween != null)
+		{
+			tween.Play(true);
 		}
 	}
 
