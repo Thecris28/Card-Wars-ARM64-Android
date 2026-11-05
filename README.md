@@ -31,9 +31,9 @@ It's CARD WARS!
 
 ## Download
 
-* [Latest Windows Version](https://github.com/ThugRod/CardWarsOriginal/releases/download/latest/CardWars-Windows.zip)
-* [Latest Android Version](https://github.com/ThugRod/CardWarsOriginal/releases/download/latest/CardWars.apk)
-* IOS & Linux - Hopefully Coming Soon
+* [Latest Windows Version]()
+* [Latest Android Version](https://github.com/Thecris28/Card-Wars-ARM64-Android/releases/download/v1.12.13/card_wars_v10.12.13.apk)
+* IOS & Linux 
 
 ## Images
 ![CardWars_r8d9H393Tp](https://i.imgur.com/cXUolY0.jpg)
