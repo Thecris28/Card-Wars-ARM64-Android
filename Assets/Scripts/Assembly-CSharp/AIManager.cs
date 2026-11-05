@@ -92,6 +92,7 @@ public class AIManager
 
 	public AIDecision MakeDecision()
 	{
+		Lanes = GameState.Instance.GetLanes(PlayerType.Opponent);
 		DecisionList.Clear();
 		ConsiderCards();
 		ConsiderAbilities();

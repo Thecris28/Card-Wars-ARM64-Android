@@ -24,7 +24,9 @@ public class PlayerInfoScript : MonoBehaviour
 		GotSpikedMaceStump,
 		GotFreezyJ,
 		GotAwesomatude,
-		GotMeMow
+		GotMeMow,
+		GotCreatureGhostNinja
+		
 	}
 
 	public delegate void SaveCallback();

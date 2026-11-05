@@ -555,7 +555,7 @@ public class CWFloopActionManager : MonoBehaviour
 		}
 		if (spellRemovedTarget)
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(3f);
 		}
 		if (resumeOnComplete)
 		{
@@ -711,7 +711,7 @@ public class CWFloopActionManager : MonoBehaviour
 		}
 		if (spellRemovedTarget)
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(3f);
 		}
 		if (resumeOnComplete)
 		{

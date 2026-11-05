@@ -108,7 +108,9 @@ public class BattleJukeboxScript : MonoBehaviour
 		AudioSource component = GetComponent<AudioSource>();
 		if (component != null && audioClip != null)
 		{
-			SLOTGameSingleton<SLOTAudioManager>.GetInstance().PlayMusic(component, audioClip, 0f, volume);
+			SLOTAudioManager audioManager = SLOTGameSingleton<SLOTAudioManager>.GetInstance();
+			audioManager.StopMusic(component);
+			audioManager.PlayMusic(component, audioClip, 0f, volume);
 		}
 	}
 

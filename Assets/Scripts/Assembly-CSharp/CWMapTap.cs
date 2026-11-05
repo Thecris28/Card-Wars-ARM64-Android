@@ -15,6 +15,18 @@ public class CWMapTap : MonoBehaviour
 
 	private void Start()
 	{
+		if (ShowLockedErrorButtonTween == null)
+		{
+			GameObject lockedError = GameObject.Find("ShowLockedErrorButtonTween");
+			if (lockedError != null)
+			{
+				ShowLockedErrorButtonTween = lockedError.GetComponent<UIButtonTween>();
+			}
+			if (ShowLockedErrorButtonTween == null)
+			{
+				Debug.LogError("Could not find the locked quest error tween in the quest map scene.", this);
+			}
+		}
 		CWCameraCollider cWCameraCollider = Object.FindObjectOfType(typeof(CWCameraCollider)) as CWCameraCollider;
 		if (cWCameraCollider != null)
 		{

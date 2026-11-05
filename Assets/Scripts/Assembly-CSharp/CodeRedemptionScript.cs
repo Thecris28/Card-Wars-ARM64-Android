@@ -55,79 +55,87 @@ public class CodeRedemptionScript : MonoBehaviour
 
 	public void RedeemCode(string input)
 	{
-		if ("P1GGY1" == input)
+		if ("P1GGY1" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotCreaturePig, "Creature_Pig");
 			return;
 		}
-		if ("CUTIE PIE" == input)
+		if ("CUTIE PIE" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureSnuggleTree, "Creature_SnuggleTree");
 			return;
 		}
-		if ("MINSTR3L" == input)
+		if ("MINSTR3L" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureEmbarassingBard, "Creature_EmbarrassingBard");
 			return;
 		}
-		if ("C3R3BL" == input)
+		if ("C3R3BL" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotSpellCerebral, "Spell_CerebralBloodstorm");
 			return;
 		}
-		if ("BRIEF" == input)
+		if ("BRIEF" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotSpellBriefPower, "Spell_BriefPower");
 			return;
 		}
-		if ("123224" == input)
+		if ("123224" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureMusicMallard, "Creature_MusicMallard");
 			return;
 		}
-		if ("NICE ONE" == input)
+		if ("NICE ONE" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotSpikedMaceStump, "Creature_SpikedMaceStump");
 			return;
 		}
-		if ("COOLDUDE" == input)
+		if ("COOLDUDE" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotFreezyJ, "Creature_FreezyJ");
 			return;
 		}
-		if ("AWESOMATUDE" == input)
+		if ("AWESOMATUDE" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotAwesomatude, "Creature_SpikedMaceStump");
 			return;
 		}
-		if ("ME-MOW" == input)
+		if ("ME-MOW" == input.ToUpper())
 		{
 			DoCardRedeem(PlayerInfoScript.Tag.GotMeMow, "Creature_FreezyJ");
 			return;
 		}
-		if ("WINTER BMO" == input)
+		if ("WINTER BMO" == input.ToUpper())
 		{
 			DoLeaderRedeem("Leader_BMOSweater");
 			return;
 		}
-		if ("GHOST DOG" == input && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "halloween", TFUtils.ServerTime.Ticks))
+		if ("GHOST DOG" == input.ToUpper() && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "halloween", TFUtils.ServerTime.Ticks))
 		{
 			DoLeaderRedeem("Leader_JakeGhost");
 			return;
 		}
-		if ("LUMPS" == input && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "christmas", TFUtils.ServerTime.Ticks))
+		if ("LUMPS" == input.ToUpper() && ScheduleDataManager.Instance.IsItemAvailableAndUnlocked("chest_premium", "christmas", TFUtils.ServerTime.Ticks))
+		// if ("LUMPS" == input.ToUpper())
 		{
 			DoLeaderRedeem("Leader_LumpySweater");
 			return;
 		}
-		if ("UND3RPANT5" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
+		// if ("UND3RPANT5" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
+		if ("UND3RPANT5" == input.ToUpper())
 		{
 			DoLeaderRedeem("Leader_FinnPajama");
 			return;
 		}
-		if ("DRKUNGFU" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
+		// if ("DRKUNGFU" == input && Singleton<CodeRedemptionManager>.Instance.GetCurrentScheme() != null)
+		if ("DRKUNGFU" == input.ToUpper())
 		{
 			DoLeaderRedeem("Leader_FinnDoctor");
+			return;
+		}
+		if ("GHOSTNINJA" == input.ToUpper())
+		{
+			DoCardRedeem(PlayerInfoScript.Tag.GotCreatureGhostNinja, "Creature_GL_GhostNinja");
 			return;
 		}
 		if (Showfail != null)

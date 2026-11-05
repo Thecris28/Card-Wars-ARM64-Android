@@ -113,6 +113,7 @@ public class CWFuseCraftSequencer : MonoBehaviour
 		blackPanelTween.Reset();
 		yield return new WaitForSeconds(1f);
 		craftAnimationTr.gameObject.SetActive(true);
+		craftAnimationTr.GetComponent<Animation>().Play("Crafting");
 		for (int i = 0; i < recipe.ingredients.Count; i++)
 		{
 			GameObject obj = recipeCards[i];

@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Text;
+using JsonFx.Json;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,6 +43,9 @@ public class CardWarsProfileManager : MonoBehaviour
 	private bool createMode;
 	private int selectedIndex;
 	private string newProfileName = "Nuevo aventurero";
+	private string pendingImportJson;
+	private string importStatusMessage;
+	private bool isSavePickerOpen;
 	private bool newUnlockAll;
 	private bool newInfiniteCoins;
 	private bool newInfiniteGems;
@@ -103,8 +109,35 @@ public class CardWarsProfileManager : MonoBehaviour
 		instance = this;
 		DontDestroyOnLoad(base.gameObject);
 		EnsureProfiles();
+		if (string.IsNullOrEmpty(newProfileName) || newProfileName == "Nuevo aventurero")
+		{
+			newProfileName = Localize("Nuevo aventurero", "New adventurer");
+		}
 		selectedIndex = Mathf.Max(0, FindProfileIndex(ActiveProfile.id));
 		menuVisible = true;
+	}
+
+	private static bool IsSpanish()
+	{
+		return Application.systemLanguage == SystemLanguage.Spanish;
+	}
+
+	private static string Localize(string spanish, string english)
+	{
+		return IsSpanish() ? spanish : english;
+	}
+
+	private static string GetProfileDisplayName(CardWarsProfile profile)
+	{
+		if (profile.id == UnlimitedProfileId)
+		{
+			return Localize("Todo ilimitado", "Unlimited");
+		}
+		if (profile.id == StoryProfileId)
+		{
+			return Localize("Historia desde cero", "Story from scratch");
+		}
+		return profile.displayName;
 	}
 
 	public static string GetActiveGameFileName()
@@ -403,6 +436,177 @@ public class CardWarsProfileManager : MonoBehaviour
 		playerInfo.Save();
 	}
 
+	private void OpenSavePicker()
+	{
+		if (!IsPlayerReady())
+		{
+			importStatusMessage = Localize("Espera a que el juego termine de cargar para importar.", "Wait for the game to finish loading before importing.");
+			return;
+		}
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+		try
+		{
+			AndroidJavaClass picker = new AndroidJavaClass("com.cardwars.saveimport.SavePicker");
+			AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+			AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+			isSavePickerOpen = true;
+			picker.CallStatic("launch", activity);
+			importStatusMessage = Localize("Selecciona el JSON descifrado en el explorador de Android.", "Choose the decoded JSON in the Android file picker.");
+		}
+		catch (Exception exception)
+		{
+			isSavePickerOpen = false;
+			Debug.LogError("No se pudo abrir el selector de partidas: " + exception);
+			importStatusMessage = Localize("No se pudo abrir el selector de archivos.", "Could not open the file picker.");
+		}
+#else
+		importStatusMessage = Localize("El selector de archivos está disponible en la versión Android.", "The file picker is available in the Android version.");
+#endif
+	}
+
+	public void OnSaveFilePicked(string encodedJson)
+	{
+		isSavePickerOpen = false;
+		try
+		{
+			string json = Encoding.UTF8.GetString(Convert.FromBase64String(encodedJson));
+			ValidateImportSave(json);
+			pendingImportJson = json;
+			importStatusMessage = Localize(
+				"JSON compatible seleccionado. Al confirmar reemplazará el perfil activo y se intentará sincronizar con el servidor.",
+				"Compatible JSON selected. Confirming will replace the active profile and attempt to sync it with the server.");
+		}
+		catch (Exception exception)
+		{
+			pendingImportJson = null;
+			Debug.LogError("No se pudo leer el JSON seleccionado: " + exception);
+			importStatusMessage = Localize("No se pudo usar el archivo: ", "Could not use the file: ") + exception.Message;
+		}
+	}
+
+	public void OnSaveFilePickerCancelled(string unused)
+	{
+		isSavePickerOpen = false;
+		importStatusMessage = Localize("Selección cancelada.", "Selection cancelled.");
+	}
+
+	public void OnSaveFilePickerError(string encodedError)
+	{
+		isSavePickerOpen = false;
+		string errorMessage;
+		try
+		{
+			errorMessage = Encoding.UTF8.GetString(Convert.FromBase64String(encodedError));
+		}
+		catch (FormatException)
+		{
+			errorMessage = Localize("Error desconocido al leer el archivo.", "Unknown error while reading the file.");
+		}
+		Debug.LogError("El selector de partidas no pudo leer el archivo: " + errorMessage);
+		importStatusMessage = Localize("No se pudo leer el archivo: ", "Could not read the file: ") + errorMessage;
+	}
+
+	private static void ValidateImportSave(string json)
+	{
+		Dictionary<string, object> saveData = JsonReader.Deserialize<Dictionary<string, object>>(json);
+		object versionValue;
+		int saveVersion;
+		if (saveData == null || !saveData.TryGetValue("PlayerInfoVersion", out versionValue))
+		{
+			throw new InvalidDataException(Localize("El JSON no contiene PlayerInfoVersion.", "The JSON does not contain PlayerInfoVersion."));
+		}
+		if (!int.TryParse(Convert.ToString(versionValue, CultureInfo.InvariantCulture), NumberStyles.Integer, CultureInfo.InvariantCulture, out saveVersion) ||
+			saveVersion < 1 ||
+			saveVersion > 4 ||
+			(!saveData.ContainsKey("Inventory") && !saveData.ContainsKey("Leaders")))
+		{
+			throw new InvalidDataException(Localize(
+				"El JSON no parece un guardado compatible de Card Wars (versiones 1 a 4).",
+				"This JSON does not appear to be a compatible Card Wars save (versions 1 to 4)."));
+		}
+	}
+
+	private void ImportSave(CardWarsProfile profile, string json)
+	{
+		if (profile == null || profile.id != ActiveProfile.id || !IsPlayerReady())
+		{
+			importStatusMessage = Localize("Activa este perfil y espera a que el juego termine de cargar.", "Activate this profile and wait for the game to finish loading.");
+			return;
+		}
+
+		string activeSavePath = Path.Combine(Application.persistentDataPath, GetActiveGameFileName());
+		string backupPath = null;
+		bool hadActiveSave = File.Exists(activeSavePath);
+		PlayerInfoScript playerInfo = PlayerInfoScript.GetInstance();
+		if (playerInfo == null)
+		{
+			importStatusMessage = Localize("No se pudo acceder a los datos del jugador.", "Could not access player data.");
+			return;
+		}
+
+		string previousState = null;
+		bool importCommitted = false;
+		try
+		{
+			previousState = playerInfo.Serialize();
+			ValidateImportSave(json);
+
+			if (hadActiveSave)
+			{
+				backupPath = activeSavePath + ".before_import_" + DateTime.UtcNow.Ticks + ".bak";
+				File.Copy(activeSavePath, backupPath);
+			}
+
+			playerInfo.Deserialize(json);
+			CardWarsMod.Apply(playerInfo);
+			string importedState = playerInfo.Serialize();
+			SessionManager sessionManager = SessionManager.GetInstance();
+			sessionManager.SetGameStateJson(importedState);
+			importCommitted = true;
+			playerInfo.Save();
+
+			importStatusMessage = backupPath == null
+				? Localize("Partida importada y guardada con la clave de esta instalación.", "Save imported and stored with this installation's key.")
+				: Localize("Partida importada. Copia anterior: ", "Save imported. Previous save backup: ") + Path.GetFileName(backupPath);
+			pendingImportJson = null;
+		}
+		catch (Exception exception)
+		{
+			if (!importCommitted && previousState != null)
+			{
+				try
+				{
+					playerInfo.Deserialize(previousState);
+				}
+				catch (Exception rollbackException)
+				{
+					Debug.LogError(Localize("No se pudo restaurar el estado anterior tras fallar la importación: ", "Could not restore the previous state after import failed: ") + rollbackException);
+				}
+			}
+			if (!importCommitted)
+			{
+				try
+				{
+					if (backupPath != null && File.Exists(backupPath))
+					{
+						File.Copy(backupPath, activeSavePath, true);
+					}
+					else if (!hadActiveSave && File.Exists(activeSavePath))
+					{
+						File.Delete(activeSavePath);
+					}
+				}
+				catch (Exception restoreException)
+				{
+					Debug.LogError(Localize("No se pudo restaurar el archivo de guardado anterior: ", "Could not restore the previous save file: ") + restoreException);
+				}
+			}
+			Debug.LogError("No se pudo importar el guardado: " + exception);
+			importStatusMessage = Localize("Error al importar: ", "Import failed: ") + exception.Message;
+		}
+	}
+
 	private static bool IsPlayerReady()
 	{
 		try
@@ -503,8 +707,10 @@ public class CardWarsProfileManager : MonoBehaviour
 		GUI.Box(safe, string.Empty, panelStyle);
 		float margin = Mathf.Clamp(safe.width * 0.025f, 18f, 42f);
 		GUILayout.BeginArea(new Rect(safe.x + margin, safe.y + margin * 0.5f, safe.width - margin * 2f, safe.height - margin));
-		GUILayout.Label("CARD WARS · PERFILES", titleStyle, GUILayout.Height(quickHeight));
-		GUILayout.Label("Cada perfil conserva por separado su historia, mazos, cartas y recursos.", smallStyle);
+		GUILayout.Label(Localize("CARD WARS · PERFILES", "CARD WARS · PROFILES"), titleStyle, GUILayout.Height(quickHeight));
+		GUILayout.Label(Localize(
+			"Cada perfil conserva por separado su historia, mazos, cartas y recursos.",
+			"Each profile keeps its own story progress, decks, cards, and resources."), smallStyle);
 		GUILayout.Space(8f);
 		GUILayout.BeginHorizontal();
 		DrawProfileList(Mathf.Clamp(safe.width * 0.30f, 260f, 430f));
@@ -524,25 +730,72 @@ public class CardWarsProfileManager : MonoBehaviour
 	private void DrawProfileList(float width)
 	{
 		GUILayout.BeginVertical(panelStyle, GUILayout.Width(width), GUILayout.ExpandHeight(true));
-		GUILayout.Label("AVENTUREROS", headingStyle);
+		GUILayout.Label(Localize("AVENTUREROS", "ADVENTURERS"), headingStyle);
 		profileScroll = GUILayout.BeginScrollView(profileScroll);
 		for (int i = 0; i < data.profiles.Count; i++)
 		{
 			CardWarsProfile profile = data.profiles[i];
 			string prefix = profile.id == ActiveProfile.id ? "★ " : string.Empty;
 			GUIStyle style = i == selectedIndex && !createMode ? selectedButtonStyle : buttonStyle;
-			if (GUILayout.Button(prefix + profile.displayName, style, GUILayout.MinHeight(58f)))
+			if (GUILayout.Button(prefix + GetProfileDisplayName(profile), style, GUILayout.MinHeight(58f)))
 			{
 				selectedIndex = i;
 				createMode = false;
 				resetConfirmationId = null;
+				if (profile.id != ActiveProfile.id)
+				{
+					pendingImportJson = null;
+				}
 			}
 		}
 		GUILayout.EndScrollView();
-		if (GUILayout.Button("+ CREAR PERFIL", buttonStyle, GUILayout.MinHeight(58f)))
+		if (GUILayout.Button(Localize("+ CREAR PERFIL", "+ CREATE PROFILE"), buttonStyle, GUILayout.MinHeight(58f)))
 		{
 			createMode = true;
 			resetConfirmationId = null;
+			pendingImportJson = null;
+		}
+		GUILayout.Space(8f);
+		GUILayout.Label(Localize("IMPORTAR PARTIDA", "IMPORT SAVE"), headingStyle);
+		GUILayout.Label(Localize(
+			"Selecciona el JSON descifrado desde Descargas o cualquier carpeta accesible.",
+			"Choose the decoded JSON from Downloads or any accessible folder."), smallStyle);
+		CardWarsProfile selectedProfile = selectedIndex >= 0 && selectedIndex < data.profiles.Count
+			? data.profiles[selectedIndex]
+			: null;
+		bool canImportSelectedProfile = selectedProfile != null &&
+			selectedProfile.id == ActiveProfile.id &&
+			IsPlayerReady() &&
+			!isSavePickerOpen;
+		GUI.enabled = canImportSelectedProfile;
+		string importButtonText = pendingImportJson != null
+			? Localize("CONFIRMAR IMPORTACIÓN", "CONFIRM IMPORT")
+			: Localize("ELEGIR JSON", "CHOOSE JSON");
+		if (GUILayout.Button(importButtonText, buttonStyle, GUILayout.MinHeight(58f)))
+		{
+			if (pendingImportJson != null)
+			{
+				ImportSave(selectedProfile, pendingImportJson);
+			}
+			else
+			{
+				OpenSavePicker();
+			}
+		}
+		GUI.enabled = true;
+		if (selectedProfile == null || selectedProfile.id != ActiveProfile.id)
+		{
+			GUILayout.Label(Localize(
+				"Selecciona primero el perfil activo para importar en él.",
+				"Select the active profile first to import into it."), smallStyle);
+		}
+		else if (!IsPlayerReady())
+		{
+			GUILayout.Label(Localize("Espera a que el juego termine de cargar para importar.", "Wait for the game to finish loading before importing."), smallStyle);
+		}
+		if (!string.IsNullOrEmpty(importStatusMessage))
+		{
+			GUILayout.Label(importStatusMessage, smallStyle);
 		}
 		GUILayout.EndVertical();
 	}
@@ -551,25 +804,25 @@ public class CardWarsProfileManager : MonoBehaviour
 	{
 		GUILayout.BeginVertical(panelStyle, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 		detailScroll = GUILayout.BeginScrollView(detailScroll);
-		GUILayout.Label("NUEVO PERFIL", headingStyle);
-		GUILayout.Label("Nombre", labelStyle);
+		GUILayout.Label(Localize("NUEVO PERFIL", "NEW PROFILE"), headingStyle);
+		GUILayout.Label(Localize("Nombre", "Name"), labelStyle);
 		newProfileName = GUILayout.TextField(newProfileName, GUILayout.MinHeight(52f));
 		GUILayout.Space(10f);
-		GUILayout.Label("Elige las reglas iniciales. Podrás cambiarlas después.", smallStyle);
-		newUnlockAll = DrawCheckbox("Desbloquear todo el contenido", newUnlockAll);
-		newInfiniteCoins = DrawCheckbox("Monedas infinitas", newInfiniteCoins);
-		newInfiniteGems = DrawCheckbox("Gemas infinitas", newInfiniteGems);
-		newInfiniteStamina = DrawCheckbox("Corazones/energía ilimitados", newInfiniteStamina);
+		GUILayout.Label(Localize("Elige las reglas iniciales. Podrás cambiarlas después.", "Choose the starting rules. You can change them later."), smallStyle);
+		newUnlockAll = DrawCheckbox(Localize("Desbloquear todo el contenido", "Unlock all content"), newUnlockAll);
+		newInfiniteCoins = DrawCheckbox(Localize("Monedas infinitas", "Infinite coins"), newInfiniteCoins);
+		newInfiniteGems = DrawCheckbox(Localize("Gemas infinitas", "Infinite gems"), newInfiniteGems);
+		newInfiniteStamina = DrawCheckbox(Localize("Corazones/energía ilimitados", "Unlimited hearts/energy"), newInfiniteStamina);
 		GUILayout.Space(12f);
-		newMinimumCoins = DrawAmount("Monedas mínimas", newMinimumCoins, 1000);
-		newMinimumGems = DrawAmount("Gemas mínimas", newMinimumGems, 100);
+		newMinimumCoins = DrawAmount(Localize("Monedas mínimas", "Minimum coins"), newMinimumCoins, 1000);
+		newMinimumGems = DrawAmount(Localize("Gemas mínimas", "Minimum gems"), newMinimumGems, 100);
 		GUILayout.EndScrollView();
 		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("CANCELAR", buttonStyle, GUILayout.MinHeight(62f)))
+		if (GUILayout.Button(Localize("CANCELAR", "CANCEL"), buttonStyle, GUILayout.MinHeight(62f)))
 		{
 			createMode = false;
 		}
-		if (GUILayout.Button("CREAR", buttonStyle, GUILayout.MinHeight(62f)))
+		if (GUILayout.Button(Localize("CREAR", "CREATE"), buttonStyle, GUILayout.MinHeight(62f)))
 		{
 			CreateCustomProfile();
 		}
@@ -610,8 +863,10 @@ public class CardWarsProfileManager : MonoBehaviour
 		bool isActive = profile.id == ActiveProfile.id;
 		GUILayout.BeginVertical(panelStyle, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 		detailScroll = GUILayout.BeginScrollView(detailScroll);
-		GUILayout.Label(profile.displayName.ToUpperInvariant(), headingStyle);
-		GUILayout.Label(profile.id == StoryProfileId ? "Campaña limpia: empieza con el tutorial y desbloquea todo poco a poco." : "Configura libremente las ayudas de este aventurero.", smallStyle);
+		GUILayout.Label(GetProfileDisplayName(profile).ToUpperInvariant(), headingStyle);
+		GUILayout.Label(profile.id == StoryProfileId
+			? Localize("Campaña limpia: empieza con el tutorial y desbloquea todo poco a poco.", "A fresh campaign: start with the tutorial and unlock content as you progress.")
+			: Localize("Configura libremente las ayudas de este aventurero.", "Customize this adventurer's settings freely."), smallStyle);
 		GUILayout.Space(10f);
 		bool oldUnlockAll = profile.allContentUnlocked;
 		bool oldInfiniteCoins = profile.infiniteCoins;
@@ -619,25 +874,25 @@ public class CardWarsProfileManager : MonoBehaviour
 		bool oldInfiniteStamina = profile.infiniteStamina;
 		int oldMinimumCoins = profile.minimumCoins;
 		int oldMinimumGems = profile.minimumGems;
-		profile.allContentUnlocked = DrawCheckbox("Desbloquear todo el contenido", profile.allContentUnlocked);
-		profile.infiniteCoins = DrawCheckbox("Monedas infinitas", profile.infiniteCoins);
-		profile.infiniteGems = DrawCheckbox("Gemas infinitas", profile.infiniteGems);
-		profile.infiniteStamina = DrawCheckbox("Corazones/energía ilimitados", profile.infiniteStamina);
-		profile.minimumCoins = DrawAmount("Monedas mínimas", profile.minimumCoins, 1000);
-		profile.minimumGems = DrawAmount("Gemas mínimas", profile.minimumGems, 100);
+		profile.allContentUnlocked = DrawCheckbox(Localize("Desbloquear todo el contenido", "Unlock all content"), profile.allContentUnlocked);
+		profile.infiniteCoins = DrawCheckbox(Localize("Monedas infinitas", "Infinite coins"), profile.infiniteCoins);
+		profile.infiniteGems = DrawCheckbox(Localize("Gemas infinitas", "Infinite gems"), profile.infiniteGems);
+		profile.infiniteStamina = DrawCheckbox(Localize("Corazones/energía ilimitados", "Unlimited hearts/energy"), profile.infiniteStamina);
+		profile.minimumCoins = DrawAmount(Localize("Monedas mínimas", "Minimum coins"), profile.minimumCoins, 1000);
+		profile.minimumGems = DrawAmount(Localize("Gemas mínimas", "Minimum gems"), profile.minimumGems, 100);
 		if (oldUnlockAll != profile.allContentUnlocked || oldInfiniteCoins != profile.infiniteCoins || oldInfiniteGems != profile.infiniteGems || oldInfiniteStamina != profile.infiniteStamina || oldMinimumCoins != profile.minimumCoins || oldMinimumGems != profile.minimumGems)
 		{
 			SaveProfiles();
 		}
 		GUILayout.Space(8f);
-		GUILayout.Label("BÓVEDA LOCAL · no realiza compras reales", headingStyle);
+		GUILayout.Label(Localize("BÓVEDA LOCAL · no realiza compras reales", "LOCAL VAULT · no real purchases"), headingStyle);
 		GUILayout.BeginHorizontal();
 		GUI.enabled = isActive;
-		if (GUILayout.Button("+10 000 MONEDAS", buttonStyle, GUILayout.MinHeight(54f)))
+		if (GUILayout.Button(Localize("+10 000 MONEDAS", "+10,000 COINS"), buttonStyle, GUILayout.MinHeight(54f)))
 		{
 			AddCurrency(10000, 0);
 		}
-		if (GUILayout.Button("+500 GEMAS", buttonStyle, GUILayout.MinHeight(54f)))
+		if (GUILayout.Button(Localize("+500 GEMAS", "+500 GEMS"), buttonStyle, GUILayout.MinHeight(54f)))
 		{
 			AddCurrency(0, 500);
 		}
@@ -645,22 +900,28 @@ public class CardWarsProfileManager : MonoBehaviour
 		GUILayout.EndHorizontal();
 		if (!isActive)
 		{
-			GUILayout.Label("Activa el perfil para modificar su saldo.", smallStyle);
+			GUILayout.Label(Localize("Activa el perfil para modificar su saldo.", "Activate this profile to change its balance."), smallStyle);
 		}
 		GUILayout.EndScrollView();
-		if (GUILayout.Button(isActive ? "CONTINUAR CON ESTE PERFIL" : "ACTIVAR PERFIL", buttonStyle, GUILayout.MinHeight(64f)))
+		if (GUILayout.Button(isActive
+			? Localize("CONTINUAR CON ESTE PERFIL", "CONTINUE WITH THIS PROFILE")
+			: Localize("ACTIVAR PERFIL", "ACTIVATE PROFILE"), buttonStyle, GUILayout.MinHeight(64f)))
 		{
 			ActivateProfile(profile);
 		}
 		GUILayout.BeginHorizontal();
-		string resetText = resetConfirmationId == profile.id ? "CONFIRMAR REINICIO" : "REINICIAR DESDE CERO";
+		string resetText = resetConfirmationId == profile.id
+			? Localize("CONFIRMAR REINICIO", "CONFIRM RESET")
+			: Localize("REINICIAR DESDE CERO", "RESET TO DEFAULTS");
 		if (GUILayout.Button(resetText, buttonStyle, GUILayout.MinHeight(56f)))
 		{
 			ResetProfile(profile);
 		}
 		if (!profile.builtIn && !isActive)
 		{
-			string deleteText = resetConfirmationId == "delete_" + profile.id ? "CONFIRMAR BORRADO" : "BORRAR PERFIL";
+			string deleteText = resetConfirmationId == "delete_" + profile.id
+				? Localize("CONFIRMAR BORRADO", "CONFIRM DELETE")
+				: Localize("BORRAR PERFIL", "DELETE PROFILE");
 			if (GUILayout.Button(deleteText, buttonStyle, GUILayout.MinHeight(56f)))
 			{
 				DeleteProfile(profile);
