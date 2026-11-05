@@ -16,10 +16,6 @@ Open the project with Unity 2022.3.55f1 and install Android Build Support, Andro
 
 `Assets/Scripts/Assembly-CSharp/CardWarsMod.cs` enables all cards, leaders, quests, regions, dungeons, and skips tutorial locks whenever a profile is loaded. Coins are held at a minimum balance of 1,000,000,000, so purchases work normally without consuming the balance. Both features can be disabled through the constants in `CardWarsModSettings`.
 
-Issues:
-From what I've seen there's an issue on the Fionna and Cake level 24, I want to look into it and attempt a fix ASAP.
-There's no ETA on when I'll be able to thoroughly look through the game as I'm currently trying to fix the PvP and Unity Project for Card Wars Kingdom.
-
 A port of the "Adventure Time: Card Wars" mobile game to PC and updated for ANDROID
 
 Floop the Pig! It's Adventure Time CARD WARS! Play the game inspired by the Adventure TIme episode, 'Card Wars'! Summon creatures and cast spells to battle your way to victory.
