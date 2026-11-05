@@ -80,7 +80,7 @@ MonoBehaviour:
   - {fileID: 1121379374153139}
   - {fileID: 1816868532568113}
   - {fileID: 1770157273501169}
-  MapMusic: {fileID: 0}
+  MapMusic: {fileID: 82878963159464111}
   LockedRoadTexture: {fileID: 2800000, guid: fcb8e2d7f508c39449ca84508c8a87b5, type: 3}
   RegionRoadTextures:
   - {fileID: 2800000, guid: 21b296ce4a501e94787fe9ec4a2993db, type: 3}
