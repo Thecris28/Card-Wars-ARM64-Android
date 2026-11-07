@@ -45402,7 +45402,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2200, y: 2000, z: 1}
+  m_LocalScale: {x: 3200, y: 2000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2670}
@@ -45680,7 +45680,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2400, y: 1400, z: 1}
+  m_LocalScale: {x: 3200, y: 1400, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2669}
@@ -46575,7 +46575,7 @@ Transform:
   m_GameObject: {fileID: 1963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2343.4138, y: 1.0141069, z: 1000}
+  m_LocalPosition: {x: 2307.8093, y: 0, z: 1000}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108104,7 +108104,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.5
@@ -131314,7 +131314,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0.6
   duration: 0.3
@@ -131391,7 +131391,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.3
@@ -140564,7 +140564,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.3
@@ -141535,7 +141535,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.5
@@ -145731,7 +145731,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.2
@@ -147510,7 +147510,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.1
@@ -148394,7 +148394,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.2
@@ -158271,7 +158271,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.5
@@ -162958,7 +162958,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.5
@@ -177841,7 +177841,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
   duration: 0.3
