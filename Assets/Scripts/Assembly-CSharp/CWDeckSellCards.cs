@@ -30,7 +30,19 @@ public class CWDeckSellCards : MonoBehaviour
 	private void FillTable()
 	{
 		UIFastGrid component = base.gameObject.GetComponent<UIFastGrid>();
-		PlayerDeckManager deckManager = PlayerInfoScript.GetInstance().DeckManager;
+		PlayerInfoScript playerInfo = PlayerInfoScript.GetInstance();
+		if (playerInfo == null)
+		{
+			return;
+		}
+
+		PlayerDeckManager deckManager = playerInfo.DeckManager;
+		if (deckManager == null)
+		{
+			Debug.LogError("CWDeckSellCards: PlayerInfoScript has no DeckManager.");
+			return;
+		}
+
 		List<CardItem> sortedInventory = deckManager.GetSortedInventory();
 		deckManager.DetermineMembership();
 		List<object> list = new List<object>();

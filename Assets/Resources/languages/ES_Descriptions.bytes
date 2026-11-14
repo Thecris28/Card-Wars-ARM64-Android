@@ -594,4 +594,7 @@
 <entry name="!!CREATURE_SHORTNAME_GHOSTLYTREE">Árbol</entry>
 <entry name="!!CREATURE_SHORTNAME_COOLDOG">Perro</entry>
 <entry name="!!CREATURE_SNOWBALL">Eleva el ataque en la cantidad de veces que hayas floopeado a esta criatura.</entry>
+<entry name="!!CREATURE_NAME_TVDUDE">Tipo de la tele</entry>
+<entry name="!!CREATURE_SHORTNAME_TVDUDE">Tele</entry>
+<entry name="!!CREATURE_TVDUDE">Ninguna criatura enemiga podrá activar su habilidad en el próximo turno.</entry>
 </entries>

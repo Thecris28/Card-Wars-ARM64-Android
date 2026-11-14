@@ -12,6 +12,8 @@ public class CWDeckAddCards : MonoBehaviour
 
 	private CardType filter;
 
+	private Faction? factionFilter;
+
 	private GameObject anyCardObj;
 
 	public CardType Filter
@@ -27,12 +29,37 @@ public class CWDeckAddCards : MonoBehaviour
 		}
 	}
 
+	public Faction? FactionFilter
+	{
+		get
+		{
+			return factionFilter;
+		}
+		set
+		{
+			factionFilter = value;
+			Sort();
+			ResetScrollPosition();
+		}
+	}
+
+	public void ResetScrollPosition()
+	{
+		UIDraggablePanel draggablePanel = NGUITools.FindInParents<UIDraggablePanel>(base.gameObject);
+		if (draggablePanel != null)
+		{
+			draggablePanel.ResetPosition();
+		}
+	}
+
 	public void OnEnable()
 	{
 		filter = CardType.None;
+		factionFilter = null;
 		PlayerDeckManager.ResetSort();
 		ResetChosenList();
 		Sort();
+		CWDeckFactionFilterController.EnsureInitialized(this);
 	}
 
 	public void OnDisable()
@@ -95,6 +122,11 @@ public class CWDeckAddCards : MonoBehaviour
 		if (filter != CardType.None)
 		{
 			sortedInventory.RemoveAll((CardItem p) => p.Form.Type != filter);
+		}
+		if (factionFilter.HasValue)
+		{
+			Faction targetFaction = factionFilter.Value;
+			sortedInventory.RemoveAll((CardItem p) => p.Form.Faction != targetFaction);
 		}
 		List<CardItem> list = new List<CardItem>();
 		List<CardItem> list2 = new List<CardItem>();

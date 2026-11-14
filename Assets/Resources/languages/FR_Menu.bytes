@@ -576,4 +576,6 @@ fantalgébrique</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Sauvegarde sur iCloud réussie.</entry>
 <entry name="!!Sidequest_MarshallLee_01">Hé, coucou. Quoi de neuf ? Regarde ça, j&apos;ai trouvé cette super carte Vampire. Cool, non ? Elle est encore plus cool quand elle est complètement éveillée, tu crois en être capable ? J&apos;ai besoin que tu lui rappelles comment se battre. Déploie-la et gagne 20 matchs. En es-tu capable ? Ah, une dernière chose. Finis cette mission avant la fin de la fête d&apos;Halloween, sinon ce petit bonhomme n&apos;atteindra jamais son plein potentiel.</entry>
 <entry name="!!BUTTON_CRAFT">Forge</entry>
+<entry name="!!FACTION">Faction</entry>
+<entry name="!!FILTER_ALL">Toutes</entry>
 </entries>

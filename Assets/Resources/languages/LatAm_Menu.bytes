@@ -583,4 +583,6 @@ Algebraico</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Guardado en la nube con éxito.</entry>
 <entry name="!!Sidequest_MarshallLee_01">Ah, hola. ¿Qué pasa? Mira esto, encontré la fabulosa Carta del Vampiro. Está buenísima, ¿no? Se pone mucho mejor cuando se despierta del todo. ¿Crees que puedes manejarla? Tienes que recordar que este tipito sabe luchar. Tienes que usar la carta y ganar 20 combates. ¿Puedes con ella? Una cosa más. Tienes que hacer todo esto antes de que termine el Evento de Halloween, o este tipito nunca conocerá su pleno potencial.</entry>
 <entry name="!!BUTTON_CRAFT">Forjar</entry>
+<entry name="!!FACTION">Facción</entry>
+<entry name="!!FILTER_ALL">Todas</entry>
 </entries>

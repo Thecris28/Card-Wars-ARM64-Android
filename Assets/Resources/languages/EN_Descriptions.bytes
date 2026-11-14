@@ -594,4 +594,7 @@
 <entry name="!!CREATURE_SHORTNAME_GHOSTLYTREE">Tree</entry>
 <entry name="!!CREATURE_SHORTNAME_COOLDOG">Dog</entry>
 <entry name="!!CREATURE_SNOWBALL">Raise Attack by the number of times you have flooped this creature.</entry>
+<entry name="!!CREATURE_NAME_TVDUDE">TV Dude</entry>
+<entry name="!!CREATURE_SHORTNAME_TVDUDE">TV Dude</entry>
+<entry name="!!CREATURE_TVDUDE">Prevent all enemy creatures from using their Floop Abilities next turn.</entry>
 </entries>

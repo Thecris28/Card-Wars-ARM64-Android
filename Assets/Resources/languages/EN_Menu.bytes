@@ -591,4 +591,6 @@ No Gems were spent.</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Saved to cloud successfully.</entry>
 <entry name="!!Sidequest_MarshallLee_01">Oh hey. What’s up? Check this out, found this awesome Vampire card. Cool right? Well it gets much much cooler when it’s fully awake, think you can handle it? I need you to remind this little guy how to fight. Deploy it and win 20 matches, can you handle it? And one more thing, wrap it up by the end of the Halloween Event or else the little guy will never meet it’s full potential.</entry>
 <entry name="!!BUTTON_CRAFT">Craft</entry>
+<entry name="!!FACTION">Faction</entry>
+<entry name="!!FILTER_ALL">All</entry>
 </entries>

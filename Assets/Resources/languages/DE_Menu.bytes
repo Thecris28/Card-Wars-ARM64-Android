@@ -581,4 +581,6 @@ Truhe</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Erfolgreich in der Cloud gespeichert.</entry>
 <entry name="!!Sidequest_MarshallLee_01">Oh hallo. Wie sieht&apos;s aus? Guck mal, ich hab diese tolle Vampir-Karte gefunden. Cool, nicht? Noch cooler ist sie, wenn sie richtig wach ist. Meinst du, das schaffst du? Du musst den kleinen Kerl dran erinnern, wie man kämpft. Setz die Karte ein und gewinne 20 Spiele. Schaffst du das? Ach ja: Du musst es während des Halloween-Events schaffen, sonst kommt der Kleine nie in seine volle Kraft.</entry>
 <entry name="!!BUTTON_CRAFT">Herstellen</entry>
+<entry name="!!FACTION">Fraktion</entry>
+<entry name="!!FILTER_ALL">Alle</entry>
 </entries>

@@ -567,4 +567,6 @@ Algébrico</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Salvo na iCloud com sucesso.</entry>
 <entry name="!!Sidequest_MarshallLee_01">E aí, o que manda? Veja só, encontrei esta carta irada de Vampiro! Ela fica ainda mais irada quando está totalmente desperta, acha que consegue dar conta? Preciso que você relembre esse mocinho como se luta. Ponha-o para brigar e vença 20 jogos. Consegue? Mais uma coisa, faça isso até o fim do Evento de Halloween, ou então o rapaz nunca descobrirá todo seu potencial.</entry>
 <entry name="!!BUTTON_CRAFT">Ofício</entry>
+<entry name="!!FACTION">Facção</entry>
+<entry name="!!FILTER_ALL">Todas</entry>
 </entries>

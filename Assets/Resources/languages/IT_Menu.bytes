@@ -558,4 +558,6 @@ Forziere</entry>
 <entry name="!!CLOUD_SAVE_SUCCESS">Salvataggio sul cloud riuscito.</entry>
 <entry name="!!Sidequest_MarshallLee_01">Ehilà. Come butta? Guarda te, ho trovato questa fantastica carta Vampiro. Ganzissimo, eh! Be&apos;, lo è molto di più quando è sveglio del tutto. Pensi di riuscire a gestirlo? Devi ricordare a &apos;sto tipetto come si combatte. Usalo e vinci 20 partite. Pensi di farcela? Ah, un&apos;altra cosa: devi finire il tutto entro il termine dell&apos;Evento di Halloween, sennò il tipetto non riuscirà mai a raggiungere la sua potenzialità piena.</entry>
 <entry name="!!BUTTON_CRAFT">Unisci</entry>
+<entry name="!!FACTION">Fazione</entry>
+<entry name="!!FILTER_ALL">Tutte</entry>
 </entries>
