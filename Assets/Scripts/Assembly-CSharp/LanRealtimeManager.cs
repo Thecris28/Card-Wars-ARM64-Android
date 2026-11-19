@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using Multiplayer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LanRealtimeManager : MonoBehaviour
 {
@@ -97,6 +98,8 @@ public class LanRealtimeManager : MonoBehaviour
 	private const int DiscoveryPort = 39778;
 	private const string DiscoveryRequest = "CARDWARS_LAN_DISCOVER_V6";
 	private const string DiscoveryResponse = "CARDWARS_LAN_HOST_V6";
+	private const float BattleSyncTimeoutSeconds = 20f;
+	private const int BattleLaneCount = 4;
 	public static LanRealtimeManager Instance { get; private set; }
 	public static bool IsConnected
 	{
@@ -130,7 +133,6 @@ public class LanRealtimeManager : MonoBehaviour
 	public int MatchSeed { get; private set; }
 	public PlayerProfile LocalProfile { get; private set; }
 	public PlayerProfile PeerProfile { get; private set; }
-	public bool TurboModeSelected { get; private set; }
 	public bool LocalReady { get; private set; }
 	public bool PeerReady { get; private set; }
 	public int PingMilliseconds { get; private set; }
@@ -167,10 +169,18 @@ public class LanRealtimeManager : MonoBehaviour
 	private string joinAddress = string.Empty;
 	private bool lobbyVisible;
 	private bool matchCommitted;
+	private bool battleSyncFailureHandled;
+	private string battleSyncFailureMessage = string.Empty;
 	private int nextSequence = 1;
 	private int nextBattleActionSequence = 1;
 	private int currentActionSeed;
+	private float remoteActionStartedAt = -1f;
+	private float remoteTargetWaitStartedAt = -1f;
 	public bool IsApplyingRemoteAction { get; private set; }
+	public bool HasBattleSyncFailed
+	{
+		get { return battleSyncFailureHandled; }
+	}
 	private float nextPingTime;
 	private GUIStyle titleStyle;
 	private GUIStyle labelStyle;
@@ -206,7 +216,25 @@ public class LanRealtimeManager : MonoBehaviour
 		}
 		Instance = this;
 		DontDestroyOnLoad(base.gameObject);
+		SceneManager.sceneLoaded += OnSceneLoaded;
 		SetState(ConnectionState.Disconnected, "Sin conexión LAN");
+	}
+
+	private void OnDestroy()
+	{
+		if (Instance == this)
+		{
+			SceneManager.sceneLoaded -= OnSceneLoaded;
+			Instance = null;
+		}
+	}
+
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if (scene.name == "AdventureTime" && battleSyncFailureHandled)
+		{
+			ClearBattleSyncFailure();
+		}
 	}
 
 	public void ShowLobby(Action onPeerReady)
@@ -224,21 +252,9 @@ public class LanRealtimeManager : MonoBehaviour
 		}
 	}
 
-	public void ToggleTurboMode()
-	{
-		if (State == ConnectionState.Connected || State == ConnectionState.Connecting)
-		{
-			return;
-		}
-		TurboModeSelected = !TurboModeSelected;
-		if (IsHost)
-		{
-			ApplySelectedBattleMode();
-		}
-	}
-
 	public void FindMatchAutomatically()
 	{
+		ClearBattleSyncFailure();
 		PlayerProfile profile;
 		if (!TryBuildLocalProfile(out profile))
 		{
@@ -247,6 +263,7 @@ public class LanRealtimeManager : MonoBehaviour
 		Disconnect();
 		LocalProfile = profile;
 		IsHost = false;
+		ApplyNormalBattleMode();
 		running = true;
 		SetState(ConnectionState.Connecting, "Buscando otro jugador en tu Wi-Fi...");
 		discoveryThread = new Thread(AutoMatchWorker);
@@ -312,6 +329,7 @@ public class LanRealtimeManager : MonoBehaviour
 
 	public void Host()
 	{
+		ClearBattleSyncFailure();
 		PlayerProfile profile;
 		if (!TryBuildLocalProfile(out profile))
 		{
@@ -320,7 +338,7 @@ public class LanRealtimeManager : MonoBehaviour
 		Disconnect();
 		LocalProfile = profile;
 		IsHost = true;
-		ApplySelectedBattleMode();
+		ApplyNormalBattleMode();
 		MatchSeed = Environment.TickCount & int.MaxValue;
 		running = true;
 		SetState(ConnectionState.Hosting, "Esperando al segundo jugador en " + GetLocalIPv4() + ":" + Port);
@@ -334,6 +352,7 @@ public class LanRealtimeManager : MonoBehaviour
 
 	public void Join(string address)
 	{
+		ClearBattleSyncFailure();
 		PlayerProfile profile;
 		if (!TryBuildLocalProfile(out profile))
 		{
@@ -359,6 +378,7 @@ public class LanRealtimeManager : MonoBehaviour
 
 	public void DiscoverHost()
 	{
+		ClearBattleSyncFailure();
 		PlayerProfile profile;
 		if (!TryBuildLocalProfile(out profile))
 		{
@@ -367,6 +387,7 @@ public class LanRealtimeManager : MonoBehaviour
 		Disconnect();
 		LocalProfile = profile;
 		IsHost = false;
+		ApplyNormalBattleMode();
 		running = true;
 		SetState(ConnectionState.Connecting, "Buscando una partida en la red local...");
 		discoveryThread = new Thread(DiscoverHostWorker);
@@ -388,6 +409,8 @@ public class LanRealtimeManager : MonoBehaviour
 		remoteBattleResults.Clear();
 		remoteBattleStates.Clear();
 		IsApplyingRemoteAction = false;
+		remoteActionStartedAt = -1f;
+		remoteTargetWaitStartedAt = -1f;
 		try
 		{
 			if (reader != null)
@@ -733,6 +756,10 @@ public class LanRealtimeManager : MonoBehaviour
 			HandlePacket(rawPacket);
 		}
 		ApplyPendingRemoteTarget();
+		if (IsApplyingRemoteAction && remoteActionStartedAt >= 0f && Time.realtimeSinceStartup - remoteActionStartedAt >= BattleSyncTimeoutSeconds)
+		{
+			FailBattleSynchronization("Tiempo agotado al ejecutar una acción remota.");
+		}
 		if (State == ConnectionState.Connected && Time.realtimeSinceStartup >= nextPingTime)
 		{
 			nextPingTime = Time.realtimeSinceStartup + 1f;
@@ -748,7 +775,7 @@ public class LanRealtimeManager : MonoBehaviour
 		HelloPayload helloPayload = new HelloPayload();
 		helloPayload.host = IsHost;
 		helloPayload.matchSeed = MatchSeed;
-		helloPayload.turboMode = TurboModeSelected;
+		helloPayload.turboMode = false;
 		helloPayload.profile = LocalProfile;
 		Send("hello", JsonUtility.ToJson(helloPayload));
 	}
@@ -777,11 +804,10 @@ public class LanRealtimeManager : MonoBehaviour
 			if (!IsHost && helloPayload.host)
 			{
 				MatchSeed = helloPayload.matchSeed;
-				TurboModeSelected = helloPayload.turboMode;
 			}
 			if (PeerProfile != null)
 			{
-				ApplySelectedBattleMode();
+				ApplyNormalBattleMode();
 				LocalReady = false;
 				PeerReady = false;
 				matchCommitted = false;
@@ -810,6 +836,8 @@ public class LanRealtimeManager : MonoBehaviour
 			BattleActionPayload action = JsonUtility.FromJson<BattleActionPayload>(wirePacket.payload);
 			if (action != null)
 			{
+				action.lane = MirrorLane(action.lane);
+				action.targetIndex = MirrorLane(action.targetIndex);
 				if (action.kind == "target")
 				{
 					remoteTargets.Enqueue(action);
@@ -833,6 +861,7 @@ public class LanRealtimeManager : MonoBehaviour
 			BattleStatePayload state = JsonUtility.FromJson<BattleStatePayload>(wirePacket.payload);
 			if (state != null)
 			{
+				state.lane = MirrorLane(state.lane);
 				remoteBattleStates[state.lane] = state;
 			}
 		}
@@ -840,10 +869,24 @@ public class LanRealtimeManager : MonoBehaviour
 
 	private void ApplyPendingRemoteTarget()
 	{
-		if (!IsApplyingRemoteAction || remoteTargets.Count == 0 || GameState.Instance == null || !GameState.Instance.HasTargetingListener())
+		if (!IsApplyingRemoteAction || GameState.Instance == null || !GameState.Instance.HasTargetingListener())
 		{
+			remoteTargetWaitStartedAt = -1f;
 			return;
 		}
+		if (remoteTargets.Count == 0)
+		{
+			if (remoteTargetWaitStartedAt < 0f)
+			{
+				remoteTargetWaitStartedAt = Time.realtimeSinceStartup;
+			}
+			else if (Time.realtimeSinceStartup - remoteTargetWaitStartedAt >= BattleSyncTimeoutSeconds)
+			{
+				FailBattleSynchronization("Tiempo agotado esperando el objetivo remoto.");
+			}
+			return;
+		}
+		remoteTargetWaitStartedAt = -1f;
 		BattleActionPayload target = remoteTargets.Dequeue();
 		currentActionSeed = target.randomSeed;
 		ApplyCurrentActionSeed();
@@ -956,15 +999,22 @@ public class LanRealtimeManager : MonoBehaviour
 
 	public IEnumerator ExecuteRemoteOpponentTurn(CWOpponentActionSequencer sequencer)
 	{
+		float waitStartedAt = Time.realtimeSinceStartup;
 		while (IsRealtimeBattle)
 		{
 			if (remoteBattleActions.Count == 0)
 			{
+				if (Time.realtimeSinceStartup - waitStartedAt >= BattleSyncTimeoutSeconds)
+				{
+					FailBattleSynchronization("Tiempo agotado esperando las acciones del rival.");
+					yield break;
+				}
 				yield return null;
 				continue;
 			}
 			BattleActionPayload action = remoteBattleActions.Dequeue();
 			IsApplyingRemoteAction = true;
+			remoteActionStartedAt = Time.realtimeSinceStartup;
 			currentActionSeed = action.randomSeed;
 			ApplyCurrentActionSeed();
 			if (action.kind == "card")
@@ -983,16 +1033,31 @@ public class LanRealtimeManager : MonoBehaviour
 			{
 				sequencer.FinishRemoteTurn(action.skipBattle);
 				IsApplyingRemoteAction = false;
+				remoteActionStartedAt = -1f;
+				remoteTargetWaitStartedAt = -1f;
 				yield break;
 			}
 			IsApplyingRemoteAction = false;
+			remoteActionStartedAt = -1f;
+			remoteTargetWaitStartedAt = -1f;
+			waitStartedAt = Time.realtimeSinceStartup;
+		}
+		if (!battleSyncFailureHandled)
+		{
+			FailBattleSynchronization("Se perdió la conexión mientras se esperaba el turno remoto.");
 		}
 	}
 
 	public IEnumerator WaitForRemoteRingStart(int lane, Action<BattleActionPayload> callback)
 	{
+		float waitStartedAt = Time.realtimeSinceStartup;
 		while (IsRealtimeBattle && !remoteRingStarts.ContainsKey(lane))
 		{
+			if (Time.realtimeSinceStartup - waitStartedAt >= BattleSyncTimeoutSeconds)
+			{
+				FailBattleSynchronization("Tiempo agotado esperando el inicio de la rueda.");
+				yield break;
+			}
 			yield return null;
 		}
 		BattleActionPayload action;
@@ -1001,12 +1066,22 @@ public class LanRealtimeManager : MonoBehaviour
 			remoteRingStarts.Remove(lane);
 			callback(action);
 		}
+		else if (!battleSyncFailureHandled)
+		{
+			FailBattleSynchronization("Se perdió la conexión antes de iniciar la rueda.");
+		}
 	}
 
 	public IEnumerator WaitForRemoteBattleResult(int lane, Action<BattleActionPayload> callback)
 	{
+		float waitStartedAt = Time.realtimeSinceStartup;
 		while (IsRealtimeBattle && !remoteBattleResults.ContainsKey(lane))
 		{
+			if (Time.realtimeSinceStartup - waitStartedAt >= BattleSyncTimeoutSeconds)
+			{
+				FailBattleSynchronization("Tiempo agotado esperando el resultado de la rueda.");
+				yield break;
+			}
 			yield return null;
 		}
 		BattleActionPayload action;
@@ -1014,6 +1089,10 @@ public class LanRealtimeManager : MonoBehaviour
 		{
 			remoteBattleResults.Remove(lane);
 			callback(action);
+		}
+		else if (!battleSyncFailureHandled)
+		{
+			FailBattleSynchronization("Se perdió la conexión antes de recibir el resultado de la rueda.");
 		}
 	}
 
@@ -1034,13 +1113,23 @@ public class LanRealtimeManager : MonoBehaviour
 
 	public IEnumerator WaitAndApplyRemoteBattleState(int lane)
 	{
+		float waitStartedAt = Time.realtimeSinceStartup;
 		while (IsRealtimeBattle && !remoteBattleStates.ContainsKey(lane))
 		{
+			if (Time.realtimeSinceStartup - waitStartedAt >= BattleSyncTimeoutSeconds)
+			{
+				FailBattleSynchronization("Tiempo agotado esperando la sincronización del daño.");
+				yield break;
+			}
 			yield return null;
 		}
 		BattleStatePayload state;
 		if (!remoteBattleStates.TryGetValue(lane, out state))
 		{
+			if (!battleSyncFailureHandled)
+			{
+				FailBattleSynchronization("Se perdió la conexión antes de sincronizar el daño.");
+			}
 			yield break;
 		}
 		remoteBattleStates.Remove(lane);
@@ -1072,13 +1161,49 @@ public class LanRealtimeManager : MonoBehaviour
 		{
 			return;
 		}
-		for (int i = 0; i < damage.Length && i < 4; i++)
+		for (int i = 0; i < damage.Length && i < BattleLaneCount; i++)
 		{
-			if (damage[i] >= 0 && GameState.Instance.LaneHasCreature(player, i))
+			int localLane = MirrorLane(i);
+			if (damage[i] >= 0 && GameState.Instance.LaneHasCreature(player, localLane))
 			{
-				GameState.Instance.GetCreature(player, i).Damage = damage[i];
+				GameState.Instance.GetCreature(player, localLane).Damage = damage[i];
 			}
 		}
+	}
+
+	private static int MirrorLane(int lane)
+	{
+		return lane >= 0 && lane < BattleLaneCount ? BattleLaneCount - 1 - lane : lane;
+	}
+
+	private void ClearBattleSyncFailure()
+	{
+		battleSyncFailureHandled = false;
+		battleSyncFailureMessage = string.Empty;
+		remoteActionStartedAt = -1f;
+		remoteTargetWaitStartedAt = -1f;
+	}
+
+	private void FailBattleSynchronization(string reason)
+	{
+		if (battleSyncFailureHandled)
+		{
+			return;
+		}
+		battleSyncFailureHandled = true;
+		battleSyncFailureMessage = reason;
+		Debug.LogError("LAN: partida cancelada sin ganador ni perdedor: " + reason);
+		Time.timeScale = 1f;
+		IsApplyingRemoteAction = false;
+		remoteActionStartedAt = -1f;
+		remoteTargetWaitStartedAt = -1f;
+		CWOpponentActionSequencer sequencer = CWOpponentActionSequencer.GetInstance();
+		if (sequencer != null)
+		{
+			sequencer.resumeFlag = true;
+		}
+		Disconnect();
+		SetState(ConnectionState.Error, battleSyncFailureMessage);
 	}
 
 	public void ApplyCurrentActionSeed()
@@ -1183,7 +1308,7 @@ public class LanRealtimeManager : MonoBehaviour
 			return;
 		}
 		GlobalFlags.Instance.InMPMode = true;
-		ApplySelectedBattleMode();
+		ApplyNormalBattleMode();
 		CWMPMapController instance = CWMPMapController.GetInstance();
 		if (instance == null)
 		{
@@ -1202,20 +1327,18 @@ public class LanRealtimeManager : MonoBehaviour
 		mPData.TrophyLoss = 0;
 	}
 
-	private void ApplySelectedBattleMode()
+	private void ApplyNormalBattleMode()
 	{
-		if (TurboModeSelected)
-		{
-			BattleModeRules.UseTurboMode(false);
-		}
-		else
-		{
-			BattleModeRules.UseNormalMode();
-		}
+		BattleModeRules.UseNormalMode();
 	}
 
 	private void SetState(ConnectionState newState, string text)
 	{
+		if (newState == ConnectionState.Error && matchCommitted && !battleSyncFailureHandled)
+		{
+			FailBattleSynchronization(text);
+			return;
+		}
 		stateValue = (int)newState;
 		StatusText = text;
 	}
@@ -1416,6 +1539,11 @@ public class LanRealtimeManager : MonoBehaviour
 		EnsureStyles();
 		Rect safeArea = GetGuiSafeArea();
 		float buttonHeight = Mathf.Clamp(safeArea.height * 0.09f, 60f, 100f);
+		if (!string.IsNullOrEmpty(battleSyncFailureMessage))
+		{
+			DrawBattleSyncFailure(safeArea, buttonHeight);
+			return;
+		}
 		if (!lobbyVisible)
 		{
 			return;
@@ -1452,17 +1580,6 @@ public class LanRealtimeManager : MonoBehaviour
 		}
 		GUI.enabled = true;
 		GUILayout.Space(12f);
-		GUI.enabled = State == ConnectionState.Disconnected || State == ConnectionState.Error || State == ConnectionState.Hosting;
-		if (GUILayout.Button("Modo: " + (TurboModeSelected ? "GUERRA TURBO" : "Normal"), buttonStyle, GUILayout.Height(buttonHeight * 0.8f)))
-		{
-			TurboModeSelected = !TurboModeSelected;
-			if (IsHost)
-			{
-				ApplySelectedBattleMode();
-			}
-		}
-		GUI.enabled = true;
-		GUILayout.Label(IsHost || State == ConnectionState.Disconnected || State == ConnectionState.Error ? "El anfitrión elige el modo de juego." : "El modo lo decide el anfitrión.", labelStyle);
 		if (State == ConnectionState.Connected && PeerProfile != null)
 		{
 			GUILayout.Space(12f);
@@ -1492,6 +1609,49 @@ public class LanRealtimeManager : MonoBehaviour
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.EndArea();
+	}
+
+	private void DrawBattleSyncFailure(Rect safeArea, float buttonHeight)
+	{
+		float width = Mathf.Min(safeArea.width * 0.88f, 900f);
+		float height = Mathf.Min(safeArea.height * 0.55f, 460f);
+		Rect panel = new Rect(safeArea.x + (safeArea.width - width) * 0.5f, safeArea.y + (safeArea.height - height) * 0.5f, width, height);
+		GUI.Box(panel, string.Empty, boxStyle);
+		GUILayout.BeginArea(new Rect(panel.x + 24f, panel.y + 18f, panel.width - 48f, panel.height - 36f));
+		GUILayout.Label("Partida LAN cancelada", titleStyle, GUILayout.Height(buttonHeight));
+		GUILayout.Label("La partida se canceló sin declarar ganador ni perdedor.\n" + battleSyncFailureMessage, labelStyle, GUILayout.ExpandHeight(true));
+		if (GUILayout.Button("Volver al menú", buttonStyle, GUILayout.Height(buttonHeight)))
+		{
+			ReturnFromCancelledBattle();
+		}
+		GUILayout.EndArea();
+	}
+
+	private void ReturnFromCancelledBattle()
+	{
+		battleSyncFailureMessage = string.Empty;
+		CWReturnToMainMenu returnButton = UnityEngine.Object.FindObjectOfType(typeof(CWReturnToMainMenu)) as CWReturnToMainMenu;
+		if (returnButton != null)
+		{
+			returnButton.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+			return;
+		}
+		if (GameState.Instance != null && GameState.Instance.BattleResolver != null)
+		{
+			GameState.Instance.BattleResolver.SetResult(null);
+		}
+		GlobalFlags flags = GlobalFlags.Instance;
+		if (flags != null)
+		{
+			flags.ReturnToMainMenu = true;
+			flags.BattleResult = null;
+		}
+		PlayerInfoScript playerInfo = PlayerInfoScript.GetInstance();
+		if (playerInfo != null)
+		{
+			playerInfo.Tutorial = false;
+		}
+		SLOTGameSingleton<SLOTSceneManager>.GetInstance().LoadLevel("AdventureTime");
 	}
 
 	private void OnApplicationQuit()

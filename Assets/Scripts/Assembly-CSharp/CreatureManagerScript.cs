@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -281,8 +282,15 @@ public class CreatureManagerScript : MonoBehaviour
 		}
 		else
 		{
-			CWOpponentActionSequencer.GetInstance().resumeFlag = true;
+			BattlePhaseManager.GetInstance().Phase = BattlePhase.P2Setup;
+			StartCoroutine(ResumeOpponentSequence());
 		}
+	}
+
+	private IEnumerator ResumeOpponentSequence()
+	{
+		yield return null;
+		CWOpponentActionSequencer.GetInstance().resumeFlag = true;
 	}
 
 	public void HideCreatures()

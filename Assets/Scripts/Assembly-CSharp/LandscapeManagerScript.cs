@@ -240,9 +240,11 @@ public class LandscapeManagerScript : MonoBehaviour
 
 	public void AssignOpponentLandscapes()
 	{
+		bool mirrorOpponentLandscapes = GlobalFlags.Instance != null && GlobalFlags.Instance.InMPMode;
 		for (int i = 0; i < 4; i++)
 		{
-			LandscapeType landscapeInDeck = GameInstance.GetLandscapeInDeck(PlayerType.Opponent, i);
+			int deckLane = mirrorOpponentLandscapes ? 3 - i : i;
+			LandscapeType landscapeInDeck = GameInstance.GetLandscapeInDeck(PlayerType.Opponent, deckLane);
 			GameInstance.SetLandscape(PlayerType.Opponent, i, landscapeInDeck);
 		}
 	}

@@ -239,7 +239,11 @@ public class CWBattleSequenceController : MonoBehaviour
 			PerfThrottleManager.PerfEvents prevPerfEvent = PerfThrottleManager.PerfEvents.NONE;
 			for (int j = 0; j < 4; j++)
 			{
-				while (BattleManagerScript.GetInstance().BattlePaused)
+				if (LanRealtimeManager.Instance != null && LanRealtimeManager.Instance.HasBattleSyncFailed)
+				{
+					yield break;
+				}
+				while (BattleManagerScript.GetInstance().BattlePaused && (LanRealtimeManager.Instance == null || !LanRealtimeManager.Instance.HasBattleSyncFailed))
 				{
 					yield return null;
 				}
@@ -293,7 +297,15 @@ public class CWBattleSequenceController : MonoBehaviour
 					_keyPressed = false;
 					yield return StartCoroutine(RingStart());
 				}
+				if (LanRealtimeManager.Instance != null && LanRealtimeManager.Instance.HasBattleSyncFailed)
+				{
+					yield break;
+				}
 			}
+		}
+		if (LanRealtimeManager.Instance != null && LanRealtimeManager.Instance.HasBattleSyncFailed)
+		{
+			yield break;
 		}
 		yield return StartCoroutine(BattleEnd(false));
 	}
@@ -348,10 +360,11 @@ public class CWBattleSequenceController : MonoBehaviour
 		{
 			remoteRingStart = value;
 		}));
-		if (remoteRingStart != null)
+		if (remoteRingStart == null || LanRealtimeManager.Instance.HasBattleSyncFailed)
 		{
-			ApplyRemoteRingConfiguration(remoteRingStart);
+			yield break;
 		}
+		ApplyRemoteRingConfiguration(remoteRingStart);
 		animateFlag = true;
 		SLOTGameSingleton<SLOTAudioManager>.GetInstance().PlaySound(GetComponent<AudioSource>());
 		Time.timeScale = 0f;
@@ -363,7 +376,7 @@ public class CWBattleSequenceController : MonoBehaviour
 		Time.timeScale = 1f;
 		_keyPressed = true;
 		animateFlag = false;
-		if (remoteResult == null)
+		if (remoteResult == null || LanRealtimeManager.Instance.HasBattleSyncFailed)
 		{
 			yield break;
 		}
@@ -373,7 +386,7 @@ public class CWBattleSequenceController : MonoBehaviour
 			barSprite.transform.localRotation = Quaternion.Euler(0f, 0f, currentAngle * -360f);
 		}
 		string remoteAttackResult = remoteResult.battleResult;
-		result = ((remoteAttackResult == "Miss") ? "Hit" : "Miss");
+		result = ((remoteAttackResult == "Miss") ? "Hit" : ((remoteAttackResult == "Crit") ? "Crit" : "Miss"));
 		GetTweenTarget(remoteAttackResult).SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
 		yield return new WaitForSeconds(0.3f);
 		GetComponent<AudioSource>().Stop();
@@ -407,6 +420,8 @@ public class CWBattleSequenceController : MonoBehaviour
 		RotateRingObj(hitAreaEnd, hitAreaEdgeEnd);
 		RotateRingObj(critAreaEnd, critAreaEdgeEnd);
 		barSprite.spriteName = remoteLeader.Ring_P1_BarSprite;
+		float? remoteCritDamageMod = remoteLeader.CritDamageMod;
+		damageModifierCrit = remoteCritDamageMod.Value;
 	}
 
 	private IEnumerator WaitForKeyPress()
@@ -672,7 +687,15 @@ public class CWBattleSequenceController : MonoBehaviour
 			else if (phaseMgr.Phase == BattlePhase.P2Battle)
 			{
 				yield return StartCoroutine(LanRealtimeManager.Instance.WaitAndApplyRemoteBattleState(lane));
+				if (LanRealtimeManager.Instance.HasBattleSyncFailed)
+				{
+					yield break;
+				}
 			}
+		}
+		if (LanRealtimeManager.Instance != null && LanRealtimeManager.Instance.HasBattleSyncFailed)
+		{
+			yield break;
 		}
 		if (GameInstance.GetHealth(!player) == 0)
 		{

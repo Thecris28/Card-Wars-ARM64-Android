@@ -30,17 +30,11 @@ public class SearchOpponent : AsyncData<MatchData>
 
 	private UILabel lanStatusLabel;
 
-	private UILabel lanModeLabel;
-
 	private PlayQuestButton lanPlayButton;
-
-	private LanModeSelectorButton lanModeButton;
 
 	private LanReadyButton lanReadyButton;
 
 	private UILabel lanReadyLabel;
-
-	private GameObject lanModeButtonObject;
 
 	private bool lanMatchReady;
 
@@ -87,30 +81,7 @@ public class SearchOpponent : AsyncData<MatchData>
 			{
 				lanPlayButton.enabled = false;
 			}
-			Vector3 buttonPosition = GoButton.transform.localPosition;
-			lanModeButtonObject = Object.Instantiate(GoButton) as GameObject;
-			lanModeButtonObject.name = "LanModeButton";
-			lanModeButtonObject.transform.parent = GoButton.transform.parent;
-			lanModeButtonObject.transform.localRotation = GoButton.transform.localRotation;
-			lanModeButtonObject.transform.localScale = GoButton.transform.localScale;
-			lanModeButtonObject.transform.localPosition = buttonPosition;
-			GoButton.transform.localPosition = buttonPosition + Vector3.down * 270f;
-			PrepareLanButtonArtwork(lanModeButtonObject);
 			PrepareLanButtonArtwork(GoButton);
-
-			PlayQuestButton modePlayButton = lanModeButtonObject.GetComponent<PlayQuestButton>();
-			if (modePlayButton != null)
-			{
-				modePlayButton.enabled = false;
-			}
-			lanModeButton = lanModeButtonObject.GetComponent<LanModeSelectorButton>();
-			if (lanModeButton == null)
-			{
-				lanModeButton = lanModeButtonObject.AddComponent<LanModeSelectorButton>();
-			}
-			lanModeButton.owner = this;
-			lanModeLabel = FindVisibleButtonLabel(lanModeButtonObject);
-			ConfigureLanButtonLabel(lanModeLabel);
 
 			lanReadyButton = GoButton.GetComponent<LanReadyButton>();
 			if (lanReadyButton == null)
@@ -147,16 +118,45 @@ public class SearchOpponent : AsyncData<MatchData>
 			{
 				manager.Disconnect();
 			}
+			ResetLanButtonState();
+			UpdateLanUI();
 			UICamera.UnlockInput();
 		}
 	}
 
-	public void ToggleLanMode()
+	private void ResetLanButtonState()
 	{
-		if (LanRealtimeManager.Instance != null)
+		lanMatchReady = false;
+		if (lanPlayButton == null && GoButton != null)
 		{
-			LanRealtimeManager.Instance.ToggleTurboMode();
-			UpdateLanUI();
+			lanPlayButton = GoButton.GetComponent<PlayQuestButton>();
+		}
+		if (lanPlayButton != null)
+		{
+			lanPlayButton.enabled = false;
+			if (lanPlayButton.heart != null)
+			{
+				lanPlayButton.heart.SetActive(false);
+			}
+			if (lanPlayButton.collidersToDisable != null)
+			{
+				for (int i = 0; i < lanPlayButton.collidersToDisable.Length; i++)
+				{
+					if (lanPlayButton.collidersToDisable[i] != null)
+					{
+						lanPlayButton.collidersToDisable[i].enabled = true;
+					}
+				}
+			}
+			if (lanPlayButton.blinkTween != null)
+			{
+				lanPlayButton.blinkTween.enabled = false;
+			}
+		}
+		if (GoButton != null)
+		{
+			SetLanButtonCollider(GoButton, true);
+			SetLanButtonTint(GoButton, Color.white);
 		}
 	}
 
@@ -213,10 +213,6 @@ public class SearchOpponent : AsyncData<MatchData>
 		{
 			GoButton.SetActive(true);
 		}
-		if (lanModeButton != null)
-		{
-			lanModeButton.enabled = false;
-		}
 		lanMatchReady = true;
 		if (lanReadyButton != null)
 		{
@@ -235,7 +231,7 @@ public class SearchOpponent : AsyncData<MatchData>
 			SetLanButtonLabel(lanReadyLabel, "ESPERANDO...", 52);
 		}
 		SetLanButtonCollider(GoButton, false);
-		SetLanButtonWaitingTint(GoButton);
+		SetLanButtonTint(GoButton, new Color(0.45f, 0.45f, 0.45f, 1f));
 		UICamera.UnlockInput();
 	}
 
@@ -323,10 +319,6 @@ public class SearchOpponent : AsyncData<MatchData>
 		{
 			CostValue.text = "IP";
 		}
-		if (lanModeLabel != null)
-		{
-			SetLanButtonLabel(lanModeLabel, manager.TurboModeSelected ? "MODO: GUERRA TURBO" : "MODO: NORMAL", manager.TurboModeSelected ? 42 : 52);
-		}
 		if (!lanMatchReady && lanReadyLabel != null)
 		{
 			if (manager.State == LanRealtimeManager.ConnectionState.Connected && manager.PeerProfile != null)
@@ -350,10 +342,6 @@ public class SearchOpponent : AsyncData<MatchData>
 		{
 			lanPlayButton.enabled = false;
 		}
-		if (lanModeButton != null)
-		{
-			lanModeButton.enabled = manager.State != LanRealtimeManager.ConnectionState.Connected && manager.State != LanRealtimeManager.ConnectionState.Connecting;
-		}
 	}
 
 	private void SetupLanInfoPopup()
@@ -370,6 +358,11 @@ public class SearchOpponent : AsyncData<MatchData>
 		if (lanInfoPopup == null)
 		{
 			return;
+		}
+		UIWidget[] popupWidgets = lanInfoPopup.GetComponentsInChildren<UIWidget>(true);
+		for (int i = 0; i < popupWidgets.Length; i++)
+		{
+			popupWidgets[i].depth += 100;
 		}
 		ReloadButton[] reloadButtons = lanInfoPopup.GetComponentsInChildren<ReloadButton>(true);
 		for (int j = 0; j < reloadButtons.Length; j++)
@@ -449,16 +442,6 @@ public class SearchOpponent : AsyncData<MatchData>
 				transforms[i].gameObject.SetActive(false);
 			}
 		}
-		UISprite[] sprites = button.GetComponentsInChildren<UISprite>(true);
-		for (int i = 0; i < sprites.Length; i++)
-		{
-			if (sprites[i].spriteName == "PlayButton")
-			{
-				Vector3 scale = sprites[i].transform.localScale;
-				sprites[i].spriteName = "uiButtonGreen";
-				sprites[i].transform.localScale = scale;
-			}
-		}
 	}
 
 	private static void SetLanButtonCollider(GameObject button, bool enabled)
@@ -474,17 +457,16 @@ public class SearchOpponent : AsyncData<MatchData>
 		}
 	}
 
-	private static void SetLanButtonWaitingTint(GameObject button)
+	private static void SetLanButtonTint(GameObject button, Color tint)
 	{
 		if (button == null)
 		{
 			return;
 		}
 		UISprite[] sprites = button.GetComponentsInChildren<UISprite>(true);
-		Color waitingColor = new Color(0.45f, 0.45f, 0.45f, 1f);
 		for (int i = 0; i < sprites.Length; i++)
 		{
-			sprites[i].color = waitingColor;
+			sprites[i].color = tint;
 		}
 	}
 
@@ -522,19 +504,6 @@ public class SearchOpponent : AsyncData<MatchData>
 			return "Leader_Finn";
 		}
 		return leader;
-	}
-}
-
-public class LanModeSelectorButton : MonoBehaviour
-{
-	public SearchOpponent owner;
-
-	private void OnClick()
-	{
-		if (enabled && owner != null)
-		{
-			owner.ToggleLanMode();
-		}
 	}
 }
 
