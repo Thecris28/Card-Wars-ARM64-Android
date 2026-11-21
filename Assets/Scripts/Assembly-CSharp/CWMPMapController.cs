@@ -64,7 +64,7 @@ public class CWMPMapController : MonoBehaviour
 		}
 		if (gflags != null && gflags.InMPMode)
 		{
-			orthographicSize = 12f;
+			orthographicSize = 11f;
 		}
 		if (MapControllerBase.GetInstance() != null && MapControllerBase.GetInstance().QuestMapInfo != null)
 		{
